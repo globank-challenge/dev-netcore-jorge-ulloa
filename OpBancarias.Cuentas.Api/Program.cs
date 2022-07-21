@@ -10,4 +10,4 @@ var app = builder.Build();
 
 startup.Configure(app, builder.Environment);
 
-
+app.Run(app.Configuration.GetSection("ApiConfig").GetValue<string>("CuentasApiUrl"));

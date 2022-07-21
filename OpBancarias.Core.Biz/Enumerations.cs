@@ -7,17 +7,17 @@ namespace OpBancarias.Core.Biz
         public enum TipoMovimiento
         {
             [Description("Debito")]
-            Debito,
+            Debito = 1,
             [Description("Credito")]
-            Credito
+            Credito = 2
         }
         
         public enum TipoCuenta
         {
             [Description("Ahorros")]
-            Ahorros,
+            Ahorros = 1,
             [Description("Corriente")]
-            Corriente
+            Corriente = 2
         }
     }
 }

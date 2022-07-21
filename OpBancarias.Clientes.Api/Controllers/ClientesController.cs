@@ -38,7 +38,7 @@ namespace OpBancarias.Clientes.Api.Controllers
         }
 
 
-        [HttpGet("clientes/{clienteId}/movimientos")]
+        [HttpGet("{clienteId}/movimientos")]
         public async Task<ActionResult<List<MovimientosByClienteModel>>> GetMovimientosByCliente(string clienteId, [FromQuery] MovimientosByClienteQueryModel payload)
         {
             return Ok(await ModelFactory.GetMovimientosByCliente(clienteId, payload));

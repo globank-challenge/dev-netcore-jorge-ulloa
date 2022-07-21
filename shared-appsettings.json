@@ -8,5 +8,10 @@
   "AllowedHosts": "*",
   "ConnectionStrings": {
     "OpBancariasContext": "Server=localhost; Database = OpBancarias; User ID = SA; Password = MySQLP@ssw0rd;"
+  },
+  "ApiConfig": {
+    "MovimientosApiUrl": "https://localhost:7266",
+    "CuentasApiUrl": "https://localhost:7132",
+    "ClientesApiUrl": "https://localhost:7095"
   }
 }

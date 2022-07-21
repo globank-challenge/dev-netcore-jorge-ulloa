@@ -43,8 +43,6 @@ namespace OpBancarias.Api.Core
             app.UseAuthorization();
 
             app.MapControllers();
-
-            app.Run();
         }
     }
 }
