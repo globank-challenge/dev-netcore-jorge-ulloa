@@ -58,19 +58,25 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpBancarias.Movimientos.Biz
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1F8B5F99-66F0-400A-A703-AAF447A61E89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpBancarias.Movimientos.Api.Tests", "OpBancarias.Movimientos.Api.Tests\OpBancarias.Movimientos.Api.Tests.csproj", "{B6543751-2174-4A29-A372-D6B9A1F5BFCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpBancarias.Movimientos.Api.Tests", "OpBancarias.Movimientos.Api.Tests\OpBancarias.Movimientos.Api.Tests.csproj", "{B6543751-2174-4A29-A372-D6B9A1F5BFCE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpBancarias.Api.Core.Tests", "OpBancarias.Api.Core.Tests\OpBancarias.Api.Core.Tests.csproj", "{25660DDA-F2BA-4624-974F-F055B122F89E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpBancarias.Api.Core.Tests", "OpBancarias.Api.Core.Tests\OpBancarias.Api.Core.Tests.csproj", "{25660DDA-F2BA-4624-974F-F055B122F89E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpBancarias.Biz.Core.Tests", "OpBancarias.Biz.Core.Tests\OpBancarias.Biz.Core.Tests.csproj", "{9947BC33-4A3D-4516-B29E-34479EF757F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpBancarias.Biz.Core.Tests", "OpBancarias.Biz.Core.Tests\OpBancarias.Biz.Core.Tests.csproj", "{9947BC33-4A3D-4516-B29E-34479EF757F8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{24EFDE61-AFD6-46A2-976E-BFCF37E8A3DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpBancarias.Cuentas.Api.Tests", "OpBancarias.Cuentas.Api.Tests\OpBancarias.Cuentas.Api.Tests.csproj", "{A01A65E1-9BDD-4AC0-9C34-05B263776E79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpBancarias.Cuentas.Api.Tests", "OpBancarias.Cuentas.Api.Tests\OpBancarias.Cuentas.Api.Tests.csproj", "{A01A65E1-9BDD-4AC0-9C34-05B263776E79}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3DE72189-CDCD-4CB8-A425-6053F94D648F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpBancarias.Clientes.Api.Tests", "OpBancarias.Clientes.Api.Tests\OpBancarias.Clientes.Api.Tests.csproj", "{60C72716-0E18-40A2-AC41-AD304E6FA2EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpBancarias.Clientes.Api.Tests", "OpBancarias.Clientes.Api.Tests\OpBancarias.Clientes.Api.Tests.csproj", "{60C72716-0E18-40A2-AC41-AD304E6FA2EE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ChallengeContent", "ChallengeContent", "{662ED37A-2E11-4556-A5B6-27C1C14AC2F1}"
+	ProjectSection(SolutionItems) = preProject
+		BaseDatos.sql = BaseDatos.sql
+		OpBancarias.postman_collection.json = OpBancarias.postman_collection.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

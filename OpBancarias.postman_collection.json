@@ -1,0 +1,286 @@
+{
+	"info": {
+		"_postman_id": "9f950ddc-589c-436a-9143-045074455e18",
+		"name": "OpBancarias",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21762438"
+	},
+	"item": [
+		{
+			"name": "Clientes.Api",
+			"item": [
+				{
+					"name": "GetClienteById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ClientesApi}}/1756880302",
+							"host": [
+								"{{ClientesApi}}"
+							],
+							"path": [
+								"1756880302"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetMovimientosCuentaCliente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ClientesApi}}/1756880302/movimientos/?FechaInicio=2020-10-01&FechaFin=2022-10-01",
+							"host": [
+								"{{ClientesApi}}"
+							],
+							"path": [
+								"1756880302",
+								"movimientos",
+								""
+							],
+							"query": [
+								{
+									"key": "FechaInicio",
+									"value": "2020-10-01"
+								},
+								{
+									"key": "FechaFin",
+									"value": "2022-10-01"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddCliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"identificacion\": \"1756880301\",\r\n  \"nombre\": \"Jose\",\r\n  \"apellido\": \"Lema\",\r\n  \"edad\": 40,\r\n  \"direccion\": \"Otavalo sn y principal\",\r\n  \"telefono\": \"098254785\",\r\n  \"userName\": \"jose.lema\",\r\n  \"password\": \"1234\",\r\n  \"estadoActivo\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ClientesApi}}/add",
+							"host": [
+								"{{ClientesApi}}"
+							],
+							"path": [
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RemoveCliente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{ClientesApi}}/1756880303/remove",
+							"host": [
+								"{{ClientesApi}}"
+							],
+							"path": [
+								"1756880303",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCliente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"identificacion\": \"1756880303\",\r\n  \"nombre\": \"Juan\",\r\n  \"apellido\": \"Osorio\",\r\n  \"edad\": 80,\r\n  \"direccion\": \"13 junio y Equinoccial\",\r\n  \"telefono\": \"098874587\",\r\n  \"userName\": \"juan.osorio\",\r\n  \"password\": \"1245\",\r\n  \"estadoActivo\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ClientesApi}}/update",
+							"host": [
+								"{{ClientesApi}}"
+							],
+							"path": [
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cuentas.Api",
+			"item": [
+				{
+					"name": "AddCuenta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"numero\": \"585545\",\r\n  \"tipo\": 2,\r\n  \"saldoInicial\": 1000,\r\n  \"estadoActivo\": true,\r\n  \"clienteId\": 13\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{CuentasApi}}/add",
+							"host": [
+								"{{CuentasApi}}"
+							],
+							"path": [
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCuentaById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{CuentasApi}}/478758",
+							"host": [
+								"{{CuentasApi}}"
+							],
+							"path": [
+								"478758"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCuenta",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"numero\": \"496825\",\r\n  \"tipo\": 1,\r\n  \"saldoInicial\": 540,\r\n  \"estadoActivo\": true,\r\n  \"clienteId\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{CuentasApi}}/update",
+							"host": [
+								"{{CuentasApi}}"
+							],
+							"path": [
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RemoveCuenta",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{CuentasApi}}/496825/remove",
+							"host": [
+								"{{CuentasApi}}"
+							],
+							"path": [
+								"496825",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Movimientos.Api",
+			"item": [
+				{
+					"name": "MovimientosCredito",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"valor\": 600,\r\n  \"numeroCuenta\": \"225487\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{MovimientosApi}}/credito",
+							"host": [
+								"{{MovimientosApi}}"
+							],
+							"path": [
+								"credito"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MovimientosDebito",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"valor\": -540,\r\n  \"numeroCuenta\": \"496825\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{MovimientosApi}}/debito",
+							"host": [
+								"{{MovimientosApi}}"
+							],
+							"path": [
+								"debito"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
