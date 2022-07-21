@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>0bd916ac-3abe-4881-9295-ba189b5d66bb</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="shared-appsettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\shared-appsettings.json" Link="shared-appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.15.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BankingOperationsAPI\OpBancarias.Api.Core.csproj" />
+    <ProjectReference Include="..\OpBancarias.Core.Biz\OpBancarias.Core.Biz.csproj" />
+    <ProjectReference Include="..\OpBancarias.Movimientos.Biz\OpBancarias.Movimientos.Biz.csproj" />
+    <ProjectReference Include="..\OpBancarias.Movimientos.Data\OpBancarias.Data.csproj" />
+  </ItemGroup>
+
+</Project>

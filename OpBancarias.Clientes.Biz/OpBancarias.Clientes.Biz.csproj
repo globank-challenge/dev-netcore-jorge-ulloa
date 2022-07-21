@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OpBancarias.Core.Biz\OpBancarias.Core.Biz.csproj" />
+    <ProjectReference Include="..\OpBancarias.Cuentas.Biz\OpBancarias.Cuentas.Biz.csproj" />
+    <ProjectReference Include="..\OpBancarias.Movimientos.Data\OpBancarias.Data.csproj" />
+  </ItemGroup>
+
+</Project>

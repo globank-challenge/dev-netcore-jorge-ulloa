@@ -1,0 +1,12 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "OpBancariasContext": "Server=localhost; Database = OpBancarias; User ID = SA; Password = MySQLP@ssw0rd;"
+  }
+}
