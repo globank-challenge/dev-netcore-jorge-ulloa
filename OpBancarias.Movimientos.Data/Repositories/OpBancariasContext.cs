@@ -26,6 +26,7 @@ namespace OpBancarias.Data
 
             modelBuilder.Entity<Cliente>().ToTable("Clientes");
 
+            //User name, User identification and account´s number should not be duplicated
             modelBuilder.Entity<Cliente>()
                 .HasIndex(cl => cl.UserName)
                 .IsUnique();

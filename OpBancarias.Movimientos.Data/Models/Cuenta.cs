@@ -14,7 +14,7 @@ namespace OpBancarias.Data.Models
 
         [Required]
         [StringLength(12)]
-        public string Numero { get; set; }
+        public string? Numero { get; set; }
 
         [Required]
         public int Tipo { get; set; }

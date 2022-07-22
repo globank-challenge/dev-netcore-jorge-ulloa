@@ -21,10 +21,10 @@ namespace OpBancarias.Data.Repositories.Cuenta
                 await _context.SaveChangesAsync();
                 return savedCuenta.Entity;
             }
-            catch (DbUpdateException ex)
+            catch 
             {
                 throw new CustomException(
-                                "Error actualizando datos: " + ex.Message,
+                                "Error actualizando datos: Error creando cuenta.",
                                 HttpStatusCode.InternalServerError,
                                 CustomException.ErrorCodes.InternalServerError);
             }
@@ -34,15 +34,15 @@ namespace OpBancarias.Data.Repositories.Cuenta
         {
             try
             {
-                var updatedCuenta = _context.Update<Models.Cuenta>(cuentaModel);
+                var updatedCuenta = _context.Update(cuentaModel);
 
                 await _context.SaveChangesAsync();
                 return updatedCuenta.Entity;
             }
-            catch (DbUpdateException ex)
+            catch 
             {
                 throw new CustomException(
-                                "Error actualizando datos: " + ex.Message,
+                                "Error actualizando datos: Error actualizando datos de cuenta.",
                                 HttpStatusCode.InternalServerError,
                                 CustomException.ErrorCodes.InternalServerError);
             }
@@ -52,7 +52,12 @@ namespace OpBancarias.Data.Repositories.Cuenta
         {
             try
             {
-                return await _context.Cuentas.FindAsync(idCuenta);
+                var cuenta = await _context.Cuentas.FindAsync(idCuenta);
+                if (cuenta != null)
+                {
+                    cuenta.Movimientos = await _context.Movimientos.AsNoTracking().Where(mov => mov.CuentaId.Equals(cuenta.Id)).ToListAsync();
+                }
+                return cuenta;
             }
             catch (DbUpdateException ex)
             {
@@ -67,12 +72,18 @@ namespace OpBancarias.Data.Repositories.Cuenta
         {
             try
             {
-                return await _context.Cuentas.AsNoTracking().FirstOrDefaultAsync(cta => cta.Numero == numeroCuenta);
+                var cuenta = await _context.Cuentas.AsNoTracking().FirstOrDefaultAsync(cta => cta.Numero == numeroCuenta);
+                if (cuenta != null)
+                {
+                    cuenta.Movimientos = await _context.Movimientos.AsNoTracking().Where(mov => mov.CuentaId.Equals(cuenta.Id)).ToListAsync();
+                }
+
+                return cuenta;
             }
-            catch (DbUpdateException ex)
+            catch 
             {
                 throw new CustomException(
-                                "Error obteniendo datos: " + ex.Message,
+                                "Error obteniendo datos: Error obteniendo datos de cuenta",
                                 HttpStatusCode.InternalServerError,
                                 CustomException.ErrorCodes.InternalServerError);
             }
@@ -85,10 +96,10 @@ namespace OpBancarias.Data.Repositories.Cuenta
                 _context.Cuentas.Remove(cuenta);
                 return await _context.SaveChangesAsync();
             }
-            catch (DbUpdateException ex)
+            catch 
             {
                 throw new CustomException(
-                                "Error actualizando datos: " + ex.Message,
+                                "Error actualizando datos: Error eliminando cuenta del registro ",
                                 HttpStatusCode.InternalServerError,
                                 CustomException.ErrorCodes.InternalServerError);
             }

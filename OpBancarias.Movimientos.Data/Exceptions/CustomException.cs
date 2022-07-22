@@ -11,7 +11,6 @@ namespace OpBancarias.Data.Exceptions
             ModelStateError,
             BadRequest = 400,
             UnauthorizedRequest = 401,
-            AuthTokenExpired = 410,
             [Description("Not Found")]
             NotFound = 404,
             [Description("Internal Server Error")]
@@ -31,6 +30,7 @@ namespace OpBancarias.Data.Exceptions
         }
 
         public ErrorCodes ErrorCode { get; set; }
+
         public HttpStatusCode StatusCode { get; set; }
 
         public CustomException(

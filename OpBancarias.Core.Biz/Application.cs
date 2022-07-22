@@ -10,6 +10,7 @@ namespace OpBancarias.Core.Biz
 
         public Application()
         {
+            // common configuration for all apis and unit tests
             Builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: false)

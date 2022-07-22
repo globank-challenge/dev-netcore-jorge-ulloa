@@ -23,6 +23,12 @@ namespace OpBancarias.Clientes.Api.Models
                 .ForMember(dest => dest.Movimientos, opt => opt.Ignore())
                 .DisableCtorValidation();
 
+            CreateMap<Cuenta.Biz.Cuenta, CuentaModel>()
+                .DisableCtorValidation();
+
+            CreateMap<Movimientos.Biz.Movimiento, Movimientos.Api.Models.MovimientoModel>()
+                .DisableCtorValidation();
+
             CreateMap<ReporteMovimientosModel, MovimientosByClienteModel>()
                 .ReverseMap()
                 .DisableCtorValidation();

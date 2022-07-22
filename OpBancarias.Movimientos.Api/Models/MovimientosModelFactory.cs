@@ -25,6 +25,11 @@ namespace OpBancarias.Movimientos.Api.Models
             _movimientoRepository = repo;
         }
 
+        /// <summary>
+        /// Executes a deposito of a given amount into a given account
+        /// </summary>
+        /// <param name="payload">contains account number and withdrawal amount</param>
+        /// <returns></returns>
         public async Task<MovimientoModel> Deposito(MovimientoQueryModel payload)
         {
             Movimiento movimiento = new Movimiento (
@@ -41,6 +46,11 @@ namespace OpBancarias.Movimientos.Api.Models
             return Mapper.Map<MovimientoModel>(movimiento);
         }
 
+        /// <summary>
+        /// Executes a withdrawal of a given amount into a given account
+        /// </summary>
+        /// <param name="payload">contains account number and withdrawal amount</param>
+        /// <returns></returns>
         public async Task<MovimientoModel> Extraccion(MovimientoQueryModel payload)
         {
             Movimiento movimiento = new Movimiento(

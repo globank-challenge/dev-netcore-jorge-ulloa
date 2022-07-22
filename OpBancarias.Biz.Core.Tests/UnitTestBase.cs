@@ -5,6 +5,7 @@ using System.Security.Claims;
 
 namespace OpBancarias.Biz.Core.Tests
 {
+    // Base class for unit tests
     public class UnitTestBase
     {
         public ClaimsPrincipal Principal;

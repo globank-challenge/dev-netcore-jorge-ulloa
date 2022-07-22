@@ -1,5 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using OpBancarias.Data.Exceptions;
 using System.Net;
 
@@ -21,10 +20,10 @@ namespace OpBancarias.Data.Repositories.Cliente
                 await _context.SaveChangesAsync();
                 return savedCliente.Entity;
             }
-            catch (DbUpdateException ex)
+            catch 
             {
                 throw new CustomException(
-                                "Error actualizando datos: " + ex.Message,
+                                "Error actualizando datos: Error creando nuevo cliente",
                                 HttpStatusCode.InternalServerError,
                                 CustomException.ErrorCodes.InternalServerError);
             }
@@ -34,30 +33,50 @@ namespace OpBancarias.Data.Repositories.Cliente
         {
             try
             {
-                var updatedCliente = _context.Update<Models.Cliente>(clienteModel);
+                var updatedCliente = _context.Update(clienteModel);
 
                 await _context.SaveChangesAsync();
                 return updatedCliente.Entity;
             }
-            catch (DbUpdateException ex)
+            catch 
             {
                 throw new CustomException(
-                                "Error actualizando datos: " + ex.Message,
+                                "Error actualizando datos del cliente",
                                 HttpStatusCode.InternalServerError,
                                 CustomException.ErrorCodes.InternalServerError);
             }
         }
 
+        /// <summary>
+        /// Get all cuentas and movimientos for a specific customer
+        /// </summary>
+        /// <param name="idCliente">record Id of customer</param>
+        /// <returns></returns>
+        private async Task<List<Models.Cuenta>?> GetAllCuentasCliente(int? idCliente)
+        {
+            var cuentas = await _context.Cuentas.AsNoTracking().Where(cta => cta.ClienteId.Equals(idCliente)).ToListAsync();
+            foreach (var cuenta in cuentas)
+            {
+                cuenta.Movimientos = await _context.Movimientos.AsNoTracking().Where(mov => mov.CuentaId.Equals(cuenta.Id)).ToListAsync();
+            }
+            return cuentas;
+        }
+       
         public async Task<Models.Cliente?> GetClienteById(int? idCliente)
         {
             try
             {
-                return await _context.Clientes.FindAsync(idCliente);
+                var cliente = await _context.Clientes.FindAsync(idCliente);
+                if (cliente != null)
+                {
+                    cliente.Cuentas = await GetAllCuentasCliente(idCliente);
+                }
+                return cliente;
             }
-            catch (DbUpdateException ex)
+            catch 
             {
                 throw new CustomException(
-                                "Error obteniendo datos: " + ex.Message,
+                                "Error obteniendo datos del cliente",
                                 HttpStatusCode.InternalServerError,
                                 CustomException.ErrorCodes.InternalServerError);
             }
@@ -67,12 +86,17 @@ namespace OpBancarias.Data.Repositories.Cliente
         {
             try
             {
-                return await _context.Clientes.AsNoTracking().FirstOrDefaultAsync(cli => cli.Identificacion == identificador);
+                var cliente =  await _context.Clientes.AsNoTracking().FirstOrDefaultAsync(cli => cli.Identificacion == identificador);
+                if (cliente != null)
+                {
+                    cliente.Cuentas = await GetAllCuentasCliente(cliente.Id);
+                }
+                return cliente;
             }
-            catch (DbUpdateException ex)
+            catch 
             {
                 throw new CustomException(
-                                "Error obteniendo datos: " + ex.Message,
+                                "Error obteniendo datos del cliente",
                                 HttpStatusCode.InternalServerError,
                                 CustomException.ErrorCodes.InternalServerError);
             }
@@ -85,10 +109,10 @@ namespace OpBancarias.Data.Repositories.Cliente
                 _context.Clientes.Remove(cliente);
                 return await _context.SaveChangesAsync();
             }
-            catch (DbUpdateException ex)
+            catch 
             {
                 throw new CustomException(
-                                "Error actualizando datos: " + ex.Message,
+                                "Error actualizando datos: Error eliminando registro del cliente",
                                 HttpStatusCode.InternalServerError,
                                 CustomException.ErrorCodes.InternalServerError);
             }
@@ -135,10 +159,10 @@ namespace OpBancarias.Data.Repositories.Cliente
 
                 return movimientos;
             }
-            catch (DbUpdateException ex)
+            catch 
             {
                 throw new CustomException(
-                                "Error obteniendo datos: " + ex.Message,
+                                "Error obteniendo datos: Error obteniendo reporte de movimientos del cliente",
                                 HttpStatusCode.InternalServerError,
                                 CustomException.ErrorCodes.InternalServerError);
             }

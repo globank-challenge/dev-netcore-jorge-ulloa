@@ -6,6 +6,7 @@ namespace OpBancarias.Data.Models
     public class Cliente : Persona
     {
         [Required]
+        [MaxLength(50)]
         public string UserName { get; set; }
 
         [Required]

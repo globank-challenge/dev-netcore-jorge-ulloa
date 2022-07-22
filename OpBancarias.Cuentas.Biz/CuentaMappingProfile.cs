@@ -2,17 +2,18 @@
 
 namespace OpBancarias.Cuentas.Biz
 {
+    //Mapping profile Data to BIZ
     public class CuentaMappingProfile: Profile
     {
         public CuentaMappingProfile()
         {
             CreateMap<Data.Models.Cuenta, Cuenta.Biz.Cuenta>()
-                .ReverseMap()
-                .DisableCtorValidation();
+                .DisableCtorValidation()
+                .ReverseMap();
 
             CreateMap<Data.Models.Movimiento, Movimientos.Biz.Movimiento>()
-                .ForMember(dest => dest.NumeroCuenta, opt => opt.Ignore())
-                .DisableCtorValidation();
+                .DisableCtorValidation()
+                .ForMember(dest => dest.NumeroCuenta, opt => opt.Ignore());
         }
       
     }

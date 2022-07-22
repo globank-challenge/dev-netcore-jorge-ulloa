@@ -26,51 +26,33 @@ namespace OpBancarias.Clientes.Biz
                 return _id;
             }
         }
-        public string UserName { get; set; }
+        public string? UserName { get; set; }
 
-        public string Password { get; set; }
+        public string? Password { get; set; }
 
         public bool EstadoActivo { get; set; }
 
-        public string Identificacion { get; set; }
+        public string? Identificacion { get; set; }
 
-        public string Nombre { get; set; }
+        public string? Nombre { get; set; }
 
-        public string Apellido { get; set; }
+        public string? Apellido { get; set; }
 
         public int Edad { get; set; }
 
-        public string Direccion { get; set; }
+        public string? Direccion { get; set; }
 
-        public string Telefono { get; set; }
+        public string? Telefono { get; set; }
 
         #endregion
 
         #region Extended properties
 
-        public List<Cuenta.Biz.Cuenta> Cuentas { get; set; }
+        public List<Cuenta.Biz.Cuenta>? Cuentas { get; set; }
 
         #endregion
 
         #region Constructors
-
-        public Cliente(
-            int userId,
-            IClienteRepository repo,
-            IPrincipal principal,
-            Application application,
-            IMapper mapper
-            )
-            : base(
-                  repo,
-                  principal,
-                  application,
-                  mapper
-                  )
-        {
-            _repo = repo;
-            Load(userId).GetAwaiter().GetResult();
-        }
 
         public Cliente(
             string clienteId,
@@ -110,19 +92,12 @@ namespace OpBancarias.Clientes.Biz
 
         #region Load
 
-        protected async Task Load(int userId)
-        {
-            Data.Models.Cliente? model = await _repo.GetClienteById(userId);
-
-            if (model == null)
-                throw new CustomException(
-                                    "Cliente no existente.",
-                                    HttpStatusCode.BadRequest,
-                                    CustomException.ErrorCodes.ClienteNoExistente);
-
-            Load(model);
-        }
-
+        /// <summary>
+        /// Loads customer´s info into model after asking DB for customers´s identifier
+        /// </summary>
+        /// <param name="clienteId">customers´s identifier</param>
+        /// <returns></returns>
+        /// <exception cref="CustomException"></exception>
         public async Task Load(string clienteId)
         {
             Data.Models.Cliente? model = await _repo.GetClienteByIdentificador(clienteId);
@@ -136,6 +111,10 @@ namespace OpBancarias.Clientes.Biz
             Load(model);
         }
 
+        /// <summary>
+        /// Loads account info into entity model from DB model
+        /// </summary>
+        /// <param name="model"></param>
         public void Load(Data.Models.Cliente model)
         {
             if (model == null)
@@ -150,13 +129,14 @@ namespace OpBancarias.Clientes.Biz
 
         #endregion Load
 
+        /// <summary>
+        /// Create new customer based on entity model info
+        /// </summary>
+        /// <returns></returns>
         public async Task Save()
         {
-            Data.Models.Cliente updateModel;
-            Data.Models.Cliente newModel;
-
-            updateModel = Mapper.Map<Data.Models.Cliente>(this);
-            newModel = await _repo.SaveCliente(updateModel);
+            Data.Models.Cliente updateModel = Mapper.Map<Data.Models.Cliente>(this);
+            Data.Models.Cliente newModel = await _repo.SaveCliente(updateModel);
 
             if (newModel != null)
             {
@@ -164,13 +144,14 @@ namespace OpBancarias.Clientes.Biz
             }
         }
 
+        /// <summary>
+        /// Updates customer´s info
+        /// </summary>
+        /// <returns></returns>
         public async Task Update()
         {
-            Data.Models.Cliente updateModel;
-            Data.Models.Cliente newModel;
-
-            updateModel = Mapper.Map<Data.Models.Cliente>(this);
-            newModel = await _repo.UpdateCliente(updateModel);
+            Data.Models.Cliente updateModel = Mapper.Map<Data.Models.Cliente>(this);
+            Data.Models.Cliente newModel = await _repo.UpdateCliente(updateModel);
 
             if (newModel != null)
             {
@@ -178,8 +159,15 @@ namespace OpBancarias.Clientes.Biz
             }
         }
 
+        /// <summary>
+        /// Get report of account entries for a given customer in a lapse of time
+        /// </summary>
+        /// <param name="fechaInicio">Beginning date for report</param>
+        /// <param name="fechaFin">Ending date for report</param>
+        /// <returns></returns>
         public async Task<List<ReporteMovimientosModel>> GetMovimientos(DateTime fechaInicio, DateTime fechaFin)
         {
+            //Get entries of all customer´s accounts from DB
             List<Data.Models.MovimientosCuentaDto> movimientosCuenta = await _repo.GetMovimientosByCliente(Identificacion, fechaInicio, fechaFin);
                 
             var movimientos = new List<ReporteMovimientosModel>();
@@ -190,6 +178,7 @@ namespace OpBancarias.Clientes.Biz
             {
                 foreach (var cuenta in movimientosCuenta.OrderBy(cta => cta.Numero))
                 {
+                    // set saldoInicial to account´s initial amount 
                     saldoInicial = cuenta.SaldoInicial;
 
                     if (cuenta.Movimientos != null)
@@ -207,7 +196,7 @@ namespace OpBancarias.Clientes.Biz
                                 Movimiento = movimiento.Valor,
                                 SaldoDisponible = movimiento.Saldo
                             });
-
+                            // set saldoInicial for next deposit or withdrawal to amount remaining after current one
                             saldoInicial = movimiento.Saldo;
                         }
                     }
@@ -217,6 +206,11 @@ namespace OpBancarias.Clientes.Biz
             return movimientos;
         }
 
+        /// <summary>
+        /// Removes a customer´s entity 
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="CustomException"></exception>
         public async Task<bool> Remove()
         {
             if (Cuentas.Count() > 0)

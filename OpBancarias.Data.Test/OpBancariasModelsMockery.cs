@@ -4,10 +4,12 @@
     {
         public static Models.Cuenta GetMockedCuenta()
         {
+            var randomGenerator =  new Random();
+
             Models.Cuenta cuenta = new Models.Cuenta()
             {
-                ClienteId = 1,
-                Numero = "123456",
+                ClienteId = 10,
+                Numero = randomGenerator.Next(1000000, 9999999).ToString(),
                 Tipo = 1,
                 SaldoInicial = 100,
                 EstadoActivo = true,
@@ -18,14 +20,16 @@
 
         public static Models.Cliente GetMockedCliente()
         {
-            Models.Cliente cliente = new Models.Cliente()
+            var randomGenerator = new Random();
+
+            Models.Cliente cliente = new()
             {
-                Identificacion = "1783456789",
+                Identificacion = randomGenerator.Next(1000000, 9999999).ToString(),
                 Apellido = "Doe",
                 Nombre = "John",
                 Direccion = "No Number Street",
                 Edad = 23,
-                UserName = "john.doe",
+                UserName = "john.doe." + randomGenerator.Next(1000000, 9999999).ToString(),
                 Password = "MyP@ssword",
                 Telefono = "999999999",
                 EstadoActivo = true,
@@ -36,9 +40,9 @@
 
         public static Models.Movimiento GetMockedMovimiento()
         {
-            Models.Movimiento movimiento = new Models.Movimiento()
+            Models.Movimiento movimiento = new()
             {
-                CuentaId = 4,
+                CuentaId = 7,
                 Saldo  = 10,
                 Tipo = 1,
                 Valor = 10,

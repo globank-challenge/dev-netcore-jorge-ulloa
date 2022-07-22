@@ -204,7 +204,7 @@ namespace OpBancarias.Cuentas.Api.Tests
             CuentaQueryModel payload = new()
             {
                 Id = 1,
-                Numero = "123456",
+                Numero = "478758",
                 EstadoActivo = true,
                 SaldoInicial = 100,
                 Tipo = TipoCuenta.Ahorros,
@@ -229,7 +229,7 @@ namespace OpBancarias.Cuentas.Api.Tests
             };
 
             _repo.GetCuentaByNumero(payload.Numero).Returns(cuentaInDB);
-            _repo.SaveCuenta(Arg.Any<Data.Models.Cuenta>()).Returns(cuentaUpdated);
+            _repo.UpdateCuenta(Arg.Any<Data.Models.Cuenta>()).Returns(cuentaUpdated);
 
             var result = GetResult(await _controller.UpdateCuenta(payload));
 

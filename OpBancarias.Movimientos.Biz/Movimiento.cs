@@ -12,7 +12,7 @@ namespace OpBancarias.Movimientos.Biz
     {
         #region Private Members
 
-        private readonly IMovimientoRepository _repo;
+        private IMovimientoRepository _repo;
         private int _id;
 
         #endregion
@@ -40,13 +40,13 @@ namespace OpBancarias.Movimientos.Biz
 
         #region Extended properties
 
-        public string NumeroCuenta { get; set; }
+        public string? NumeroCuenta { get; set; }
 
         #endregion
 
         #region Constructors
 
-        public Movimiento()
+        public Movimiento() : base()
         {
 
         }
@@ -71,6 +71,10 @@ namespace OpBancarias.Movimientos.Biz
 
         #region Load
 
+        /// <summary>
+        /// Load Movimiento´s entity from model
+        /// </summary>
+        /// <param name="model"></param>
         public void Load(Data.Models.Movimiento model)
         {
             if (model == null)
@@ -85,8 +89,11 @@ namespace OpBancarias.Movimientos.Biz
 
         #endregion Load
 
-        #region Save
-
+        /// <summary>
+        /// Save info of new movimiento (credit or debit) onto DB
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="CustomException"></exception>
         public async Task Save()
         {
             Data.Models.Movimiento newModel = await _repo.SaveMovimiento(Mapper.Map<Data.Models.Movimiento>(this));
@@ -100,7 +107,10 @@ namespace OpBancarias.Movimientos.Biz
             Load(newModel);
         }
 
-
+        /// <summary>
+        /// Creates and saves new deposit from entity model
+        /// </summary>
+        /// <returns></returns>
         public async Task Deposito()
         {
             await SetMovimiento();
@@ -108,6 +118,11 @@ namespace OpBancarias.Movimientos.Biz
             await Save();
         }
 
+        /// <summary>
+        /// Creates and saves a new withdrawal from entity model
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="CustomException"></exception>
         public async Task Extraccion()
         {
             await SetMovimiento();
@@ -121,6 +136,11 @@ namespace OpBancarias.Movimientos.Biz
             await Save();
         }
 
+        /// <summary>
+        /// Set values for movimiento (deposit or withdrawal): Fecha, Tipo, CuentaId and Saldo
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="CustomException"></exception>
         private async Task SetMovimiento()
         {
             // Setear valores para el movimiento
@@ -148,7 +168,5 @@ namespace OpBancarias.Movimientos.Biz
             }
             
         }
-
-        #endregion Save
     }
 }

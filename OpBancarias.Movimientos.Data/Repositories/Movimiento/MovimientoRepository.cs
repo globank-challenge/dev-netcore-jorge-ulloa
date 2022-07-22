@@ -21,17 +21,17 @@ namespace OpBancarias.Data.Repositories.Movimiento
                 await _context.SaveChangesAsync();
                 return savedMovimiento.Entity;
             }
-            catch (DbUpdateException ex)
+            catch 
             {
                 throw new CustomException(
-                                "Error actualizando datos: " + ex.Message,
+                                "Error actualizando datos: Error insertando movimiento de cuenta",
                                 HttpStatusCode.InternalServerError,
                                 CustomException.ErrorCodes.InternalServerError);
             }
 
         }
 
-        public async Task<Models.Cuenta?> GetSaldoFromMovimientosCuenta(string NumeroCuenta)
+        public async Task<Models.Cuenta?> GetSaldoFromMovimientosCuenta(string? NumeroCuenta)
         {
             try
             {
@@ -53,10 +53,10 @@ namespace OpBancarias.Data.Repositories.Movimiento
 
                 return cuenta;
             }
-            catch (DbUpdateException ex)
+            catch 
             {
                 throw new CustomException(
-                                "Error obteniendo datos: " + ex.Message,
+                                "Error obteniendo datos: Error obteniendo saldo de cuenta",
                                 HttpStatusCode.InternalServerError,
                                 CustomException.ErrorCodes.InternalServerError);
             }

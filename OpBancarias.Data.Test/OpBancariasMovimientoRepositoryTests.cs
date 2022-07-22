@@ -21,7 +21,19 @@ namespace OpBancarias.Data.Test
             var result = await _repo.SaveMovimiento(model);
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(result.CuentaId, model.CuentaId);
+            Assert.AreEqual(result.Valor, model.Valor);
+        }
+
+        
+        [TestMethod]
+        public async Task GetSaldoFromMovimientosCuenta()
+        {
+            string numeroCuenta = "478758";
+
+            var result = await _repo.GetSaldoFromMovimientosCuenta(numeroCuenta);
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.SaldoInicial >= 0);
         }
     }
 }

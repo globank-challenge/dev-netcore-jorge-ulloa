@@ -4,6 +4,10 @@ using System.Security.Principal;
 
 namespace OpBancarias.Core.Biz
 {
+    /// <summary>
+    /// Base class for entitie´s (Cuenta, Movimiento and Cliente)
+    /// </summary>
+    /// <typeparam name="IRepositoryType"></typeparam>
     public abstract class EntityBase<IRepositoryType>
     {
         public IRepositoryType OpBancariasRepository { get; }
@@ -20,7 +24,6 @@ namespace OpBancarias.Core.Biz
         }
 
         public EntityBase() { }
-
         public EntityBase(
             IRepositoryType repo,
             IPrincipal principal,
