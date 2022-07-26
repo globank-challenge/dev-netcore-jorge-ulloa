@@ -3,6 +3,7 @@ using OpBancarias.Data;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using OpBancarias.Api.Core.Filters;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Logging.EventLog;
 
 namespace OpBancarias.Api.Core
 {

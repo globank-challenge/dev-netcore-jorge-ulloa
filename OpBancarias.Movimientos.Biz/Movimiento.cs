@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Logging;
 using OpBancarias.Core.Biz;
 using OpBancarias.Data.Exceptions;
 using OpBancarias.Data.Repositories.Movimiento;
@@ -13,19 +14,15 @@ namespace OpBancarias.Movimientos.Biz
         #region Private Members
 
         private IMovimientoRepository _repo;
+        private ILogger _logger;
+
         private int _id;
 
         #endregion
 
         #region Base Properties
 
-        public int Id
-        {
-            get
-            {
-                return _id;
-            }
-        }
+        public int Id { get; set; }
         public DateTime Fecha { get; set; }
 
         public TipoMovimiento Tipo { get; set; }
@@ -55,16 +52,19 @@ namespace OpBancarias.Movimientos.Biz
             IMovimientoRepository repo,
             IPrincipal principal,
             Application application,
-            IMapper mapper
+            IMapper mapper,
+            ILogger logger
             )
             : base(
                   repo,
                   principal,
                   application,
-                  mapper
+                  mapper,
+                  logger
                   )
         {
             _repo = repo;
+            _logger = logger;
         }
 
         #endregion Constructors

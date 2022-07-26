@@ -7,6 +7,7 @@ using static OpBancarias.Core.Biz.Enumerations;
 using OpBancarias.Clientes.Api.Models;
 using OpBancarias.Clientes.Api.Controllers;
 using OpBancarias.Data.Repositories.Cliente;
+using Microsoft.Extensions.Logging;
 
 namespace OpBancarias.Clientes.Api.Tests
 {
@@ -16,6 +17,7 @@ namespace OpBancarias.Clientes.Api.Tests
         private ClientesModelFactory _factory;
         private ClientesController _controller;
         private IClienteRepository _repo;
+        private ILogger<ClientesModelFactory> _logger;
 
         public ClientesApiTests() : base()
         {
@@ -29,6 +31,7 @@ namespace OpBancarias.Clientes.Api.Tests
             _factory = new ClientesModelFactory(_repo,
                                                     Application,
                                                     Mapper,
+                                                    _logger,
                                                     ActionContextAccessor);
 
             _controller = new ClientesController(_factory);

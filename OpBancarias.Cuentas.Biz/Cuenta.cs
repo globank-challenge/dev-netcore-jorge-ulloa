@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Logging;
 using OpBancarias.Core.Biz;
 using OpBancarias.Data.Exceptions;
 using OpBancarias.Data.Repositories.Cuenta;
@@ -57,13 +58,15 @@ namespace OpBancarias.Cuenta.Biz
             ICuentaRepository repo,
             IPrincipal principal,
             Application application,
-            IMapper mapper
+            IMapper mapper,
+            ILogger logger
             )
             : base(
                   repo,
                   principal,
                   application,
-                  mapper
+                  mapper,
+                  logger
                   )
         {
             _repo = repo;
@@ -74,13 +77,15 @@ namespace OpBancarias.Cuenta.Biz
             ICuentaRepository repo,
             IPrincipal principal,
             Application application,
-            IMapper mapper
+            IMapper mapper,
+            ILogger logger
             )
             : base(
                   repo,
                   principal,
                   application,
-                  mapper
+                  mapper,
+                  logger
                   )
         {
             _repo = repo;
@@ -93,7 +98,7 @@ namespace OpBancarias.Cuenta.Biz
         /// <summary>
         /// Loads account info into model after asking DB for account´s number
         /// </summary>
-        /// <param name="Id"></param>
+        /// <param name="Id">account record Id</param>
         /// <returns></returns>
         /// <exception cref="CustomException"></exception>
         protected async Task Load(int Id)
@@ -112,7 +117,7 @@ namespace OpBancarias.Cuenta.Biz
         /// <summary>
         /// Loads account info into model after asking DB for account´s number
         /// </summary>
-        /// <param name="cuentaId"></param>
+        /// <param name="cuentaId">account number</param>
         /// <returns></returns>
         /// <exception cref="CustomException"></exception>
         public async Task Load(string cuentaId)
@@ -191,12 +196,12 @@ namespace OpBancarias.Cuenta.Biz
         /// <exception cref="CustomException"></exception>
         public async Task<bool> Remove() 
         {
-            if (Movimientos.Count > 0)
-                throw new CustomException(
-                                    "No es posible eliminar cuenta con movimientos.",
-                                    HttpStatusCode.BadRequest,
-                                    CustomException.ErrorCodes.CuentaConMovimientos);
-
+            //if (Movimientos?.Count > 0)
+            //    throw new CustomException(
+            //                        "No es posible eliminar cuenta con movimientos.",
+            //                        HttpStatusCode.BadRequest,
+            //                        CustomException.ErrorCodes.CuentaConMovimientos);
+            //In a real world, account should not be allowed to be removed if it has history (movimientos)
             return await _repo.RemoveCuenta(Mapper.Map<Data.Models.Cuenta>(this)) > 0;
         }
     }

@@ -12,8 +12,9 @@ namespace OpBancarias.Api.Core.Factories
             IRepositoryType opBancariasRepo,
             Application app,
             IMapper mapper,
+            ILogger logger,
             IActionContextAccessor actionContextAccessor)
-                : base(app, mapper, actionContextAccessor)
+                : base(app, mapper, logger, actionContextAccessor)
         {
             OpBancariasRepo = opBancariasRepo;
         }

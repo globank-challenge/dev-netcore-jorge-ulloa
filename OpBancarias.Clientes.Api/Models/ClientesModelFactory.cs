@@ -10,16 +10,19 @@ namespace OpBancarias.Clientes.Api.Models
     public class ClientesModelFactory: OpBancariasModelFactoryBase<IClienteRepository>
     {
         private IClienteRepository _clienteRepository;
+        private ILogger<ClientesModelFactory> _logger;
 
         public ClientesModelFactory(
             IClienteRepository repo,
             Application app,
             IMapper mapper,
+            ILogger<ClientesModelFactory> logger,
             IActionContextAccessor actionContextAccessor)
                 : base(
                       repo,
                       app,
                       mapper,
+                      logger,
                       actionContextAccessor)
         {
             _clienteRepository = repo;
@@ -32,7 +35,8 @@ namespace OpBancarias.Clientes.Api.Models
                 _clienteRepository,
                 CurrentPrincipal,
                 Application,
-                Mapper
+                Mapper,
+                _logger
                 );
 
             Mapper.Map(payload, cliente);
@@ -50,7 +54,8 @@ namespace OpBancarias.Clientes.Api.Models
                 _clienteRepository,
                 CurrentPrincipal,
                 Application,
-                Mapper
+                Mapper,
+                _logger
                 );
 
 
@@ -65,7 +70,8 @@ namespace OpBancarias.Clientes.Api.Models
                 _clienteRepository,
                 CurrentPrincipal,
                 Application,
-                Mapper
+                Mapper,
+                _logger
                 );
 
             await cliente.Load(idCliente);
@@ -80,7 +86,8 @@ namespace OpBancarias.Clientes.Api.Models
                 _clienteRepository,
                 CurrentPrincipal,
                 Application,
-                Mapper
+                Mapper,
+                _logger
                 );
 
             return await cliente.Remove();
@@ -93,7 +100,8 @@ namespace OpBancarias.Clientes.Api.Models
                 _clienteRepository,
                 CurrentPrincipal,
                 Application,
-                Mapper
+                Mapper,
+                _logger
                 );
 
             Mapper.Map(payload, cliente);

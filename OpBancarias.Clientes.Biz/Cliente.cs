@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Logging;
 using OpBancarias.Core.Biz;
 using OpBancarias.Data.Exceptions;
 using OpBancarias.Data.Repositories.Cliente;
@@ -59,13 +60,15 @@ namespace OpBancarias.Clientes.Biz
             IClienteRepository repo,
             IPrincipal principal,
             Application application,
-            IMapper mapper
+            IMapper mapper,
+            ILogger logger
             )
             : base(
                   repo,
                   principal,
                   application,
-                  mapper
+                  mapper,
+                  logger
                   )
         {
             _repo = repo;
@@ -76,13 +79,15 @@ namespace OpBancarias.Clientes.Biz
             IClienteRepository repo,
             IPrincipal principal,
             Application application,
-            IMapper mapper
+            IMapper mapper,
+            ILogger logger
             )
             : base(
                   repo,
                   principal,
                   application,
-                  mapper
+                  mapper,
+                  logger
                   )
         {
             _repo = repo;

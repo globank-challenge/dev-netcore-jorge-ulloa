@@ -91,10 +91,25 @@ namespace OpBancarias.Data.Repositories.Cuenta
 
         public async Task<int> RemoveCuenta(Models.Cuenta cuenta)
         {
+            int successfullyRemoved = 0;
             try
             {
-                _context.Cuentas.Remove(cuenta);
-                return await _context.SaveChangesAsync();
+                using (var dbContextTransaction = _context.Database.BeginTransaction())
+                {
+                    if (cuenta.Movimientos?.Count > 0)
+                        foreach (var movimiento in cuenta.Movimientos)
+                        {
+                            _context.Remove(movimiento);
+                        }
+
+                    _context.Cuentas.Remove(cuenta);
+
+                    successfullyRemoved = await _context.SaveChangesAsync();
+
+                    dbContextTransaction.Commit();
+                }
+
+                return successfullyRemoved;
             }
             catch 
             {

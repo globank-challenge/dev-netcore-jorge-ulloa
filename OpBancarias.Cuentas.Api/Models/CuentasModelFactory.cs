@@ -10,19 +10,23 @@ namespace OpBancarias.Cuentas.Api.Models
     public class CuentasModelFactory: OpBancariasModelFactoryBase<ICuentaRepository>
     {
         private ICuentaRepository _cuentaRepository;
+        private ILogger<CuentasModelFactory> _logger;
 
         public CuentasModelFactory(
             ICuentaRepository repo,
             Application app,
             IMapper mapper,
+            ILogger<CuentasModelFactory> logger,
             IActionContextAccessor actionContextAccessor)
                 : base(
                       repo,
                       app,
                       mapper,
+                      logger,
                       actionContextAccessor)
         {
             _cuentaRepository = repo;
+            _logger = logger;
         }
 
         public async Task<CuentaModel> SaveCuenta(CuentaQueryModel payload)
@@ -31,7 +35,8 @@ namespace OpBancarias.Cuentas.Api.Models
                 _cuentaRepository,
                 CurrentPrincipal,
                 Application,
-                Mapper
+                Mapper,
+                _logger
                 );
 
             Mapper.Map(payload, cuenta);
@@ -47,7 +52,8 @@ namespace OpBancarias.Cuentas.Api.Models
                 _cuentaRepository,
                 CurrentPrincipal,
                 Application,
-                Mapper
+                Mapper,
+                _logger
                 );
 
             await cuenta.Load(idCuenta);
@@ -62,7 +68,8 @@ namespace OpBancarias.Cuentas.Api.Models
                 _cuentaRepository,
                 CurrentPrincipal,
                 Application,
-                Mapper
+                Mapper,
+                _logger
                 );
 
             return await cuenta.Remove();
@@ -75,7 +82,8 @@ namespace OpBancarias.Cuentas.Api.Models
                 _cuentaRepository,
                 CurrentPrincipal,
                 Application,
-                Mapper
+                Mapper,
+                _logger
                 );
 
             Mapper.Map(payload, cuenta);

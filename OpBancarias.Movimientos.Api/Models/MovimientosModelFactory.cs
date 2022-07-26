@@ -15,11 +15,13 @@ namespace OpBancarias.Movimientos.Api.Models
             IMovimientoRepository repo,
             Application app,
             IMapper mapper,
+            ILogger<MovimientosModelFactory> logger,
             IActionContextAccessor actionContextAccessor)
                 : base(
                       repo,
                       app,
                       mapper,
+                      logger,
                       actionContextAccessor)
         {
             _movimientoRepository = repo;
@@ -36,7 +38,8 @@ namespace OpBancarias.Movimientos.Api.Models
                 _movimientoRepository,
                 CurrentPrincipal,
                 Application,
-                Mapper
+                Mapper,
+                OpBancariasLogger
                 );
 
             Mapper.Map(payload, movimiento);
@@ -57,7 +60,8 @@ namespace OpBancarias.Movimientos.Api.Models
                 _movimientoRepository,
                 CurrentPrincipal,
                 Application,
-                Mapper
+                Mapper,
+                OpBancariasLogger
                 );
 
             Mapper.Map(payload, movimiento);

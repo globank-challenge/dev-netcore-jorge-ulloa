@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Logging;
 using System.Security.Claims;
 using System.Security.Principal;
 
@@ -13,6 +14,7 @@ namespace OpBancarias.Core.Biz
         public IRepositoryType OpBancariasRepository { get; }
         public Application Application { get; }
         public IMapper Mapper { get; }
+        public ILogger OpBancariasLogger { get; }
 
         private ClaimsPrincipal _principal;
         public ClaimsPrincipal Principal
@@ -28,13 +30,15 @@ namespace OpBancarias.Core.Biz
             IRepositoryType repo,
             IPrincipal principal,
             Application application,
-            IMapper mapper
+            IMapper mapper,
+            ILogger logger
             )
         {
             OpBancariasRepository = repo;
             _principal = (ClaimsPrincipal)principal; 
             Application = application;
             Mapper = mapper;
+            OpBancariasLogger = logger;
         }
 
     }

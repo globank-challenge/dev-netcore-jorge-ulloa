@@ -49,10 +49,12 @@ namespace OpBancarias.Api.Core.Filters
                     errorModel.Message = "Internal server error.";
                     errorModel.ErrorCode = (int)ErrorCodes.ApplicationError;
                 }
+ 
+                var eventId = new EventId(4000, "OperacionesBancariasApiError");
 
-                errorModel.ErrorId = new Guid().ToString();
+                errorModel.ErrorId = eventId.Id.ToString();
 
-               _logger.LogError(errorModel.ErrorId, originalException, "BankingOperations: Error procesando requerimiento {Address}", errorModel.Message);
+                _logger.LogError(eventId, "BankingOperations: Error procesando requerimiento {Address}", errorModel.Message);
 
 
                 context.ExceptionHandled = true;
