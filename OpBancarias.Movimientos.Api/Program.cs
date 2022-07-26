@@ -1,6 +1,9 @@
 using OpBancarias.Movimientos.Api;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Logging.ClearProviders();
+builder.Logging.AddEventLog();
+
 
 var startup = new Startup(builder.Configuration);
 

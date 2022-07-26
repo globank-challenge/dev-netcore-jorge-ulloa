@@ -12,9 +12,10 @@ namespace OpBancarias.Core.Biz
         {
             // common configuration for all apis and unit tests
             Builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
+                .SetBasePath(Directory.GetCurrentDirectory());
+
+            Builder.AddJsonFile("..\\shared-appsettings.json", optional: true, reloadOnChange: false)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: false)
-                .AddJsonFile("shared-appsettings.json", optional: true, reloadOnChange: false)
                 .AddEnvironmentVariables();
             Configuration = Builder.Build();
         }

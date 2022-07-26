@@ -9,10 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="shared-appsettings.json" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="..\shared-appsettings.json" Link="shared-appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

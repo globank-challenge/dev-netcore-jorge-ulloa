@@ -1,6 +1,8 @@
 ﻿using OpBancarias.Core.Biz;
 using OpBancarias.Data;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using OpBancarias.Api.Core.Filters;
+using Microsoft.AspNetCore.Hosting;
 
 namespace OpBancarias.Api.Core
 {
@@ -17,17 +19,19 @@ namespace OpBancarias.Api.Core
         public virtual void ConfigureServices(IServiceCollection services)
         {
             // Add services to the container.
-
-            services.AddControllers();
-
-            services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen();
-
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
             services.AddScoped<Application, Application>();
             services.AddScoped<OpBancariasContext, OpBancariasContext>();
+
+            services.AddLogging();
+            services.AddScoped<ExceptionFilter>();
+
+            services.AddControllers();
+
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen();
         }
         public void Configure(WebApplication app, IWebHostEnvironment env)
         {
