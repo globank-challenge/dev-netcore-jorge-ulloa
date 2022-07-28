@@ -25,6 +25,8 @@ namespace OpBancarias.Cuentas.Api.Tests
         public void Init()
         {
             _repo = Substitute.For<ICuentaRepository>();
+            _logger = Substitute.For<ILogger<CuentasModelFactory>>();
+
             _factory = new CuentasModelFactory(_repo,
                                                     Application,
                                                     Mapper,
@@ -37,7 +39,7 @@ namespace OpBancarias.Cuentas.Api.Tests
         [TestMethod, TestCategory("Cuentas API")]
         public async Task AddCuentaAhorro()
         {
-            CuentaQueryModel payload = new()
+            CuentaModel payload = new()
             {
                 Numero = "123456",
                 EstadoActivo = true,
@@ -68,7 +70,7 @@ namespace OpBancarias.Cuentas.Api.Tests
         [TestMethod, TestCategory("Cuentas API")]
         public async Task AddCuentaCorriente()
         {
-            CuentaQueryModel payload = new()
+            CuentaModel payload = new()
             {
                 Numero = "123456",
                 EstadoActivo = true,

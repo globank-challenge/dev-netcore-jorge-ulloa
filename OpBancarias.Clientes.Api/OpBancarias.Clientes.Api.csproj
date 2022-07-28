@@ -9,12 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="..\shared-appsettings.json" Link="shared-appsettings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.7" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.15.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
@@ -23,7 +18,6 @@
     <ProjectReference Include="..\BankingOperationsAPI\OpBancarias.Api.Core.csproj" />
     <ProjectReference Include="..\OpBancarias.Clientes.Biz\OpBancarias.Clientes.Biz.csproj" />
     <ProjectReference Include="..\OpBancarias.Cuentas.Api\OpBancarias.Cuentas.Api.csproj" />
-    <ProjectReference Include="..\OpBancarias.Movimientos.Data\OpBancarias.Data.csproj" />
   </ItemGroup>
 
 </Project>

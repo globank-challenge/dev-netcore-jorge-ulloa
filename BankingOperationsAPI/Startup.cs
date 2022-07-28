@@ -2,20 +2,21 @@
 using OpBancarias.Data;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using OpBancarias.Api.Core.Filters;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Logging.EventLog;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace OpBancarias.Api.Core
 {
     public class Startup
     {
-        public IConfiguration configRoot
+        public IConfiguration ConfigRoot
         {
             get;
         }
         public Startup(IConfiguration configuration)
         {
-            configRoot = configuration;
+            ConfigRoot = configuration;
         }
         public virtual void ConfigureServices(IServiceCollection services)
         {
@@ -24,12 +25,27 @@ namespace OpBancarias.Api.Core
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
             services.AddScoped<Application, Application>();
-            services.AddScoped<OpBancariasContext, OpBancariasContext>();
+
+            services.AddDbContext<OpBancariasContext>();
 
             services.AddLogging();
             services.AddScoped<ExceptionFilter>();
 
             services.AddControllers();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.RequireHttpsMetadata = false;
+                options.SaveToken = true;
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidAudience = ConfigRoot["Jwt:Audience"],
+                    ValidIssuer = ConfigRoot["Jwt:Issuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(ConfigRoot["Jwt:Key"]))
+                };
+            });
 
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
@@ -45,6 +61,7 @@ namespace OpBancarias.Api.Core
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllers();

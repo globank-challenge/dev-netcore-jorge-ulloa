@@ -5,15 +5,12 @@ namespace OpBancarias.Movimientos.Api
 {
     public class Startup : OpBancarias.Api.Core.Startup
     {
-        public IConfiguration configRoot
-        {
-            get;
-        }
         public Startup(IConfiguration configuration)
             : base(configuration)
         {
 
         }
+
         public override void ConfigureServices(IServiceCollection services)
         {
             // Add services to the container.

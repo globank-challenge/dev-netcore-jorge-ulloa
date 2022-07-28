@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace OpBancarias.Data.Models
 {
@@ -9,28 +8,23 @@ namespace OpBancarias.Data.Models
 
         [Required]
         [StringLength(10)]
-        public string Identificacion { get; set; }
+        public string? Identificacion { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string Nombre { get; set; }
+        public string? Nombre { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string Apellido { get; set; }
+        public string? Apellido { get; set; }
 
         [Range(0, int.MaxValue)]
         public int Edad { get; set; }
 
         [StringLength(100)]
-        public string Direccion { get; set; }
+        public string? Direccion { get; set; }
 
         [Phone]
-        public string Telefono { get; set; }
-
-        public string NombreCliente 
-        { 
-            get { return Nombre +  " " + Apellido; }
-        }
+        public string? Telefono { get; set; }
     }
 }

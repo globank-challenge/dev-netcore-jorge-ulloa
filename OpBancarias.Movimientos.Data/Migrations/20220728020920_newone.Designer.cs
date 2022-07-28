@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OpBancarias.Data;
 
@@ -11,9 +12,10 @@ using OpBancarias.Data;
 namespace OpBancarias.Data.Migrations
 {
     [DbContext(typeof(OpBancariasContext))]
-    partial class OpBancariasContextModelSnapshot : ModelSnapshot
+    [Migration("20220728020920_newone")]
+    partial class newone
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,7 +56,7 @@ namespace OpBancarias.Data.Migrations
                     b.HasIndex("Numero")
                         .IsUnique();
 
-                    b.ToTable("Cuentas", (string)null);
+                    b.ToTable("Cuentas");
                 });
 
             modelBuilder.Entity("OpBancarias.Data.Models.Movimiento", b =>
@@ -84,7 +86,7 @@ namespace OpBancarias.Data.Migrations
 
                     b.HasIndex("CuentaId");
 
-                    b.ToTable("Movimientos", (string)null);
+                    b.ToTable("Movimientos");
                 });
 
             modelBuilder.Entity("OpBancarias.Data.Models.Persona", b =>
@@ -151,7 +153,7 @@ namespace OpBancarias.Data.Migrations
                     b.HasIndex("UserName")
                         .IsUnique();
 
-                    b.ToTable("Usuarios", (string)null);
+                    b.ToTable("Usuarios");
                 });
 
             modelBuilder.Entity("OpBancarias.Data.Models.Cliente", b =>

@@ -21,7 +21,6 @@ namespace OpBancarias.Api.Core.Filters
         {
             Models.ErrorModel errorModel;
             CustomException? custom;
-            Exception? originalException = context.Exception;
             Exception? error = context.Exception;
 
             if (error != null)

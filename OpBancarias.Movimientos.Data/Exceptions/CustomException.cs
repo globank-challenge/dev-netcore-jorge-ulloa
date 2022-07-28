@@ -26,7 +26,9 @@ namespace OpBancarias.Data.Exceptions
             [Description("Cliente tiene cuentas.")]
             ClienteConCuentas = 400005,
             [Description("Cliente no existe.")]
-            ClienteNoExistente = 400006
+            ClienteNoExistente = 400006,
+            [Description("Usuario no existe.")]
+            UsuarioNoExistente = 400007
         }
 
         public ErrorCodes ErrorCode { get; set; }

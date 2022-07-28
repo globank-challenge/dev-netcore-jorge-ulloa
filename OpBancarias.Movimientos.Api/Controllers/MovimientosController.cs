@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OpBancarias.Api.Core.Controllers;
 using OpBancarias.Api.Core.Filters;
@@ -5,6 +6,7 @@ using OpBancarias.Movimientos.Api.Models;
 
 namespace OpBancarias.Movimientos.Api.Controllers
 {
+    [Authorize]
     [ServiceFilter(typeof(ExceptionFilter))]
     [Route("[controller]")]
     public class MovimientosController: OpBancariasControllerBase<MovimientosModelFactory>

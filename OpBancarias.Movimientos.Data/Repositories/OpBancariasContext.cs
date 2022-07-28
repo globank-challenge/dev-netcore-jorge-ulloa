@@ -31,6 +31,10 @@ namespace OpBancarias.Data
                 .HasIndex(cl => cl.UserName)
                 .IsUnique();
 
+            modelBuilder.Entity<Usuario>()
+                .HasIndex(user => user.UserName)
+                .IsUnique();
+
             modelBuilder.Entity<Persona>()
                 .HasIndex(p => p.Identificacion)
                 .IsUnique();
@@ -38,6 +42,8 @@ namespace OpBancarias.Data
             modelBuilder.Entity<Cuenta>()
                 .HasIndex(cta => cta.Numero)
                 .IsUnique();
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

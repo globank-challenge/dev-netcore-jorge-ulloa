@@ -15,7 +15,7 @@ namespace OpBancarias.Api.Core.Factories
 
         public IMapper Mapper { get; set; }
 
-        public virtual ClaimsPrincipal CurrentPrincipal => ContextAccessor.ActionContext.HttpContext.User as ClaimsPrincipal;
+        public virtual ClaimsPrincipal? CurrentPrincipal => ContextAccessor.ActionContext?.HttpContext.User;
 
         public FactoryBase(
             Application app, 

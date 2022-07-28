@@ -29,7 +29,7 @@ namespace OpBancarias.Cuentas.Api.Models
             _logger = logger;
         }
 
-        public async Task<CuentaModel> SaveCuenta(CuentaQueryModel payload)
+        public async Task<CuentaModel> SaveCuenta(CuentaModel payload)
         {
             Cuenta.Biz.Cuenta cuenta = new Cuenta.Biz.Cuenta(
                 _cuentaRepository,

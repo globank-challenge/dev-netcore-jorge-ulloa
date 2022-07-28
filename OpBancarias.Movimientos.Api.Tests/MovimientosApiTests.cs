@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using NSubstitute;
 using OpBancarias.Api.Core.Tests;
 using OpBancarias.Data.Repositories.Movimiento;
@@ -13,6 +14,7 @@ namespace OpBancarias.Movimientos.Api.Tests
         private MovimientosModelFactory _factory;
         private MovimientosController _controller;
         private IMovimientoRepository _movimientosRepo;
+        private ILogger<MovimientosModelFactory> _logger;
 
         public MovimientosApiTests() : base()
         {
@@ -23,9 +25,12 @@ namespace OpBancarias.Movimientos.Api.Tests
         public void Init()
         {
             _movimientosRepo = Substitute.For<IMovimientoRepository>();
+            _logger = Substitute.For<ILogger<MovimientosModelFactory>>();
+
             _factory = new MovimientosModelFactory(_movimientosRepo,
                                                     Application,
                                                     Mapper,
+                                                    _logger,
                                                     ActionContextAccessor);
 
             _controller = new MovimientosController(_factory);

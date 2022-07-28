@@ -5,6 +5,6 @@ namespace OpBancarias.Data
 {
     public partial class OpBancariasContext
     {
-        public DbSet<Persona> Personas { get; set; }
+        public DbSet<Persona>? Personas { get; set; }
     }
 }

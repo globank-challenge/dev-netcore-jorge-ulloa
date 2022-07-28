@@ -17,7 +17,7 @@ namespace OpBancarias.Core.Biz
         public ILogger OpBancariasLogger { get; }
 
         private ClaimsPrincipal _principal;
-        public ClaimsPrincipal Principal
+        public ClaimsPrincipal? Principal
         {
             get
             {
@@ -25,7 +25,11 @@ namespace OpBancarias.Core.Biz
             }
         }
 
-        public EntityBase() { }
+        public EntityBase() 
+        { 
+
+        }
+
         public EntityBase(
             IRepositoryType repo,
             IPrincipal principal,

@@ -7,7 +7,7 @@ namespace OpBancarias.Cuentas.Api.Models
     {
         public int Id { get; set; }
 
-        public string Numero { get; set; }
+        public string? Numero { get; set; }
 
         public TipoCuenta Tipo { get; set; }
 
@@ -15,7 +15,7 @@ namespace OpBancarias.Cuentas.Api.Models
 
         public bool EstadoActivo { get; set; }
 
-        public List<MovimientoModel> Movimientos { get; set; }
+        public List<MovimientoModel>? Movimientos { get; set; }
         public int ClienteId { get; set; }
     }
 }

@@ -1,8 +1,5 @@
 using NSubstitute;
 using OpBancarias.Api.Core.Tests;
-using OpBancarias.Data.Repositories.Cuenta;
-using OpBancarias.Cuentas.Api.Controllers;
-using OpBancarias.Cuentas.Api.Models;
 using static OpBancarias.Core.Biz.Enumerations;
 using OpBancarias.Clientes.Api.Models;
 using OpBancarias.Clientes.Api.Controllers;
@@ -28,6 +25,8 @@ namespace OpBancarias.Clientes.Api.Tests
         public void Init()
         {
             _repo = Substitute.For<IClienteRepository>();
+            _logger = Substitute.For<ILogger<ClientesModelFactory>>();
+
             _factory = new ClientesModelFactory(_repo,
                                                     Application,
                                                     Mapper,
