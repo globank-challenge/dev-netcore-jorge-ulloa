@@ -15,7 +15,7 @@ namespace OpBancarias.Data.Models
         [Required]
         public bool EstadoActivo { get; set; }
 
-        public string NombreCliente
+        public string? NombreCliente
         {
             get { return Nombre + " " + Apellido; }
         }

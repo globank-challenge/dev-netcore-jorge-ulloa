@@ -9,9 +9,6 @@ namespace OpBancarias.Cuentas.Api.Models
 {
     public class CuentasModelFactory: OpBancariasModelFactoryBase<ICuentaRepository>
     {
-        private ICuentaRepository _cuentaRepository;
-        private ILogger<CuentasModelFactory> _logger;
-
         public CuentasModelFactory(
             ICuentaRepository repo,
             Application app,
@@ -25,18 +22,17 @@ namespace OpBancarias.Cuentas.Api.Models
                       logger,
                       actionContextAccessor)
         {
-            _cuentaRepository = repo;
-            _logger = logger;
+
         }
 
         public async Task<CuentaModel> SaveCuenta(CuentaModel payload)
         {
             Cuenta.Biz.Cuenta cuenta = new Cuenta.Biz.Cuenta(
-                _cuentaRepository,
+                OpBancariasRepo,
                 CurrentPrincipal,
                 Application,
                 Mapper,
-                _logger
+                OpBancariasLogger
                 );
 
             Mapper.Map(payload, cuenta);
@@ -49,11 +45,11 @@ namespace OpBancarias.Cuentas.Api.Models
         public async Task<CuentaModel> GetCuenta(string idCuenta)
         {
             Cuenta.Biz.Cuenta cuenta = new Cuenta.Biz.Cuenta(
-                _cuentaRepository,
+                OpBancariasRepo,
                 CurrentPrincipal,
                 Application,
                 Mapper,
-                _logger
+                OpBancariasLogger
                 );
 
             await cuenta.Load(idCuenta);
@@ -65,11 +61,11 @@ namespace OpBancarias.Cuentas.Api.Models
         {
             Cuenta.Biz.Cuenta cuenta = new Cuenta.Biz.Cuenta(
                 idCuenta,
-                _cuentaRepository,
+                OpBancariasRepo,
                 CurrentPrincipal,
                 Application,
                 Mapper,
-                _logger
+                OpBancariasLogger
                 );
 
             return await cuenta.Remove();
@@ -79,11 +75,11 @@ namespace OpBancarias.Cuentas.Api.Models
         {
             Cuenta.Biz.Cuenta cuenta = new Cuenta.Biz.Cuenta(
                 payload.Numero,
-                _cuentaRepository,
+                OpBancariasRepo,
                 CurrentPrincipal,
                 Application,
                 Mapper,
-                _logger
+                OpBancariasLogger
                 );
 
             Mapper.Map(payload, cuenta);

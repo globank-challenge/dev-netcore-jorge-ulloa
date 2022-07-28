@@ -28,7 +28,7 @@ namespace OpBancarias.Usuarios.Api.Controllers
         }
 
 
-        [HttpPost("{userName}/token")]
+        [HttpPost("token")]
         public async Task<ActionResult<UsuarioModel>> GetTokenUsuario(UsuarioQueryModel payload)
         {
             return Ok(await ModelFactory.GetTokenUsuario(payload));

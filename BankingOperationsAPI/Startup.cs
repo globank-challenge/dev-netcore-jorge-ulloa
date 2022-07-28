@@ -50,7 +50,7 @@ namespace OpBancarias.Api.Core
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
         }
-        public void Configure(WebApplication app, IWebHostEnvironment env)
+        public void Configure(WebApplication app)
         {
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

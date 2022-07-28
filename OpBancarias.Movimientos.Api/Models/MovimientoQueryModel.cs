@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using static OpBancarias.Core.Biz.Enumerations;
 
 namespace OpBancarias.Movimientos.Api.Models
 {

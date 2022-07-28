@@ -14,7 +14,7 @@ namespace OpBancarias.Cuenta.Biz
     {
         #region Private Members
 
-        private ICuentaRepository _repo;
+        private readonly ICuentaRepository _repo;
         private int _id;
 
         #endregion
@@ -54,9 +54,9 @@ namespace OpBancarias.Cuenta.Biz
         }
 
         public Cuenta(
-            string cuentaId,
+            string? cuentaId,
             ICuentaRepository repo,
-            IPrincipal principal,
+            IPrincipal? principal,
             Application application,
             IMapper mapper,
             ILogger logger
@@ -75,7 +75,7 @@ namespace OpBancarias.Cuenta.Biz
 
         public Cuenta(
             ICuentaRepository repo,
-            IPrincipal principal,
+            IPrincipal? principal,
             Application application,
             IMapper mapper,
             ILogger logger
@@ -120,7 +120,7 @@ namespace OpBancarias.Cuenta.Biz
         /// <param name="cuentaId">account number</param>
         /// <returns></returns>
         /// <exception cref="CustomException"></exception>
-        public async Task Load(string cuentaId)
+        public async Task Load(string? cuentaId)
         {
             Data.Models.Cuenta? model = await _repo.GetCuentaByNumero(cuentaId);
 
@@ -137,7 +137,7 @@ namespace OpBancarias.Cuenta.Biz
         /// Loads account info into entity model from DB model
         /// </summary>
         /// <param name="model"></param>
-        public void Load(Data.Models.Cuenta model)
+        public void Load(Data.Models.Cuenta? model)
         {
             if (model == null)
             {
@@ -196,11 +196,6 @@ namespace OpBancarias.Cuenta.Biz
         /// <exception cref="CustomException"></exception>
         public async Task<bool> Remove() 
         {
-            //if (Movimientos?.Count > 0)
-            //    throw new CustomException(
-            //                        "No es posible eliminar cuenta con movimientos.",
-            //                        HttpStatusCode.BadRequest,
-            //                        CustomException.ErrorCodes.CuentaConMovimientos);
             //In a real world, account should not be allowed to be removed if it has history (movimientos)
             return await _repo.RemoveCuenta(Mapper.Map<Data.Models.Cuenta>(this)) > 0;
         }

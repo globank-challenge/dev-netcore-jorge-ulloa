@@ -8,7 +8,7 @@ namespace OpBancarias.Data
     public partial class OpBancariasContext : DbContext
     {
         private const string _connectionStringName = "OpBancariasContext";
-        private string _connectionStringValue;
+        private readonly string _connectionStringValue;
 
         public OpBancariasContext(IConfiguration appConfig)
         {

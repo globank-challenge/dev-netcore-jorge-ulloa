@@ -12,7 +12,7 @@ namespace OpBancarias.Data.Test
             _repo = new ClienteRepository(_context);
         }
 
-        [TestMethod]
+        [TestMethod, Ignore]
         public async Task SaveCliente()
         {
             Models.Cliente model = OpBancariasModelsMockery.GetMockedCliente();

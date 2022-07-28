@@ -7,7 +7,7 @@ namespace OpBancarias.Api.Core.Filters
 {
     public class ExceptionFilter : IActionFilter, IOrderedFilter
     {
-        private ILogger<ExceptionFilter> _logger;
+        private readonly ILogger<ExceptionFilter> _logger;
 
         public int Order => int.MaxValue;
 

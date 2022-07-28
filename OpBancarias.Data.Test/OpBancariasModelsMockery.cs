@@ -8,7 +8,7 @@
 
             Models.Cuenta cuenta = new Models.Cuenta()
             {
-                ClienteId = 10,
+                ClienteId = 1,
                 Numero = randomGenerator.Next(1000000, 9999999).ToString(),
                 Tipo = 1,
                 SaldoInicial = 100,
@@ -42,7 +42,7 @@
         {
             Models.Movimiento movimiento = new()
             {
-                CuentaId = 7,
+                CuentaId = 1,
                 Saldo  = 10,
                 Tipo = 1,
                 Valor = 10,

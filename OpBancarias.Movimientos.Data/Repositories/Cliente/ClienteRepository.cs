@@ -13,8 +13,14 @@ namespace OpBancarias.Data.Repositories.Cliente
             _context = context;
         }
 
-        public async Task<Models.Cliente> SaveCliente(Models.Cliente clienteModel)
+        public async Task<Models.Cliente> SaveCliente(Models.Cliente? clienteModel)
         {
+            if (clienteModel == null) 
+                throw new CustomException(
+                                "Error de datos: Datos a actualizar no válidos.",
+                                HttpStatusCode.BadRequest,
+                                CustomException.ErrorCodes.BadRequest);
+
             try {
                 var savedCliente = await _context.Clientes.AddAsync(clienteModel);
                 await _context.SaveChangesAsync();
@@ -29,8 +35,14 @@ namespace OpBancarias.Data.Repositories.Cliente
             }
         }
 
-        public async Task<Models.Cliente> UpdateCliente(Models.Cliente clienteModel)
+        public async Task<Models.Cliente> UpdateCliente(Models.Cliente? clienteModel)
         {
+            if (clienteModel == null)
+                throw new CustomException(
+                                "Error de datos: Datos a actualizar no válidos.",
+                                HttpStatusCode.BadRequest,
+                                CustomException.ErrorCodes.BadRequest);
+
             try
             {
                 var updatedCliente = _context.Update(clienteModel);
@@ -54,6 +66,12 @@ namespace OpBancarias.Data.Repositories.Cliente
         /// <returns></returns>
         private async Task<List<Models.Cuenta>?> GetAllCuentasCliente(int? idCliente)
         {
+            if (idCliente == null)
+                throw new CustomException(
+                                "Error obteniendo datos: Datos de búsqueda no válidos.",
+                                HttpStatusCode.BadRequest,
+                                CustomException.ErrorCodes.BadRequest);
+
             var cuentas = await _context.Cuentas.AsNoTracking().Where(cta => cta.ClienteId.Equals(idCliente)).ToListAsync();
             foreach (var cuenta in cuentas)
             {
@@ -64,6 +82,12 @@ namespace OpBancarias.Data.Repositories.Cliente
        
         public async Task<Models.Cliente?> GetClienteById(int? idCliente)
         {
+            if (idCliente == null)
+                throw new CustomException(
+                                "Error obteniendo datos: Datos de búsqueda no válidos.",
+                                HttpStatusCode.BadRequest,
+                                CustomException.ErrorCodes.BadRequest);
+
             try
             {
                 var cliente = await _context.Clientes.FindAsync(idCliente);
@@ -82,8 +106,13 @@ namespace OpBancarias.Data.Repositories.Cliente
             }
         }
 
-        public async Task<Models.Cliente?> GetClienteByIdentificador(string identificador)
+        public async Task<Models.Cliente?> GetClienteByIdentificador(string? identificador)
         {
+            if (identificador == null)
+                throw new CustomException(
+                                "Error obteniendo datos: Datos de búsqueda no válidos.",
+                                HttpStatusCode.BadRequest,
+                                CustomException.ErrorCodes.BadRequest);
             try
             {
                 var cliente =  await _context.Clientes.AsNoTracking().FirstOrDefaultAsync(cli => cli.Identificacion == identificador);
@@ -102,8 +131,14 @@ namespace OpBancarias.Data.Repositories.Cliente
             }
         }
 
-        public async Task<int> RemoveCliente(Models.Cliente cliente)
+        public async Task<int> RemoveCliente(Models.Cliente? cliente)
         {
+            if (cliente == null)
+                throw new CustomException(
+                                "Error de datos: Datos a actualizar no válidos.",
+                                HttpStatusCode.BadRequest,
+                                CustomException.ErrorCodes.BadRequest);
+
             try
             {
                 _context.Clientes.Remove(cliente);
@@ -118,8 +153,13 @@ namespace OpBancarias.Data.Repositories.Cliente
             }
         }
 
-        public async Task<List<Models.MovimientosCuentaDto>> GetMovimientosByCliente(string identificador, DateTime fechaInicio, DateTime fechaFin)
+        public async Task<List<Models.MovimientosCuentaDto>> GetMovimientosByCliente(string? identificador, DateTime fechaInicio, DateTime fechaFin)
         {
+            if (identificador == null)
+                throw new CustomException(
+                                "Error de datos: Datos a actualizar no válidos.",
+                                HttpStatusCode.BadRequest,
+                                CustomException.ErrorCodes.BadRequest);
             try
             {
                 List<Models.MovimientosCuentaDto>? movimientos = new();

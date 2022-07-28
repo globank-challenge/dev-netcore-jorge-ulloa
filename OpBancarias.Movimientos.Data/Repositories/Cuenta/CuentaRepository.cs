@@ -13,8 +13,13 @@ namespace OpBancarias.Data.Repositories.Cuenta
             _context = context;
         }
 
-        public async Task<Models.Cuenta> SaveCuenta(Models.Cuenta cuentaModel)
+        public async Task<Models.Cuenta> SaveCuenta(Models.Cuenta? cuentaModel)
         {
+            if (cuentaModel == null)
+                throw new CustomException(
+                                "Error de datos: Datos a actualizar no válidos.",
+                                HttpStatusCode.BadRequest,
+                                CustomException.ErrorCodes.BadRequest);
             try
             {
                 var savedCuenta = await _context.Cuentas.AddAsync(cuentaModel);
@@ -30,8 +35,13 @@ namespace OpBancarias.Data.Repositories.Cuenta
             }
         }
 
-        public async Task<Models.Cuenta> UpdateCuenta(Models.Cuenta cuentaModel)
+        public async Task<Models.Cuenta> UpdateCuenta(Models.Cuenta? cuentaModel)
         {
+            if (cuentaModel == null)
+                throw new CustomException(
+                                "Error de datos: Datos a actualizar no válidos.",
+                                HttpStatusCode.BadRequest,
+                                CustomException.ErrorCodes.BadRequest);
             try
             {
                 var updatedCuenta = _context.Update(cuentaModel);
@@ -48,8 +58,14 @@ namespace OpBancarias.Data.Repositories.Cuenta
             }
         }
 
-        public async Task<Models.Cuenta?> GetCuentaById(int idCuenta)
+        public async Task<Models.Cuenta?> GetCuentaById(int? idCuenta)
         {
+            if (idCuenta == null)
+                throw new CustomException(
+                                "Error de datos: Datos de búsqueda no válidos.",
+                                HttpStatusCode.BadRequest,
+                                CustomException.ErrorCodes.BadRequest);
+
             try
             {
                 var cuenta = await _context.Cuentas.FindAsync(idCuenta);
@@ -68,8 +84,14 @@ namespace OpBancarias.Data.Repositories.Cuenta
             }
         }
 
-        public async Task<Models.Cuenta?> GetCuentaByNumero(string numeroCuenta)
+        public async Task<Models.Cuenta?> GetCuentaByNumero(string? numeroCuenta)
         {
+            if (numeroCuenta == null)
+                throw new CustomException(
+                                "Error de datos: Datos de búsqueda no válidos.",
+                                HttpStatusCode.BadRequest,
+                                CustomException.ErrorCodes.BadRequest);
+
             try
             {
                 var cuenta = await _context.Cuentas.AsNoTracking().FirstOrDefaultAsync(cta => cta.Numero == numeroCuenta);
@@ -89,8 +111,14 @@ namespace OpBancarias.Data.Repositories.Cuenta
             }
         }
 
-        public async Task<int> RemoveCuenta(Models.Cuenta cuenta)
+        public async Task<int> RemoveCuenta(Models.Cuenta? cuenta)
         {
+            if (cuenta == null)
+                throw new CustomException(
+                                "Error de datos: Datos a actualizar no válidos.",
+                                HttpStatusCode.BadRequest,
+                                CustomException.ErrorCodes.BadRequest);
+
             int successfullyRemoved = 0;
             try
             {

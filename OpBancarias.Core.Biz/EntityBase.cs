@@ -16,7 +16,7 @@ namespace OpBancarias.Core.Biz
         public IMapper Mapper { get; }
         public ILogger OpBancariasLogger { get; }
 
-        private ClaimsPrincipal _principal;
+        private readonly ClaimsPrincipal? _principal;
         public ClaimsPrincipal? Principal
         {
             get
@@ -32,14 +32,14 @@ namespace OpBancarias.Core.Biz
 
         public EntityBase(
             IRepositoryType repo,
-            IPrincipal principal,
+            IPrincipal? principal,
             Application application,
             IMapper mapper,
             ILogger logger
             )
         {
             OpBancariasRepository = repo;
-            _principal = (ClaimsPrincipal)principal; 
+            _principal = principal != null ? (ClaimsPrincipal)principal : new ClaimsPrincipal(); 
             Application = application;
             Mapper = mapper;
             OpBancariasLogger = logger;

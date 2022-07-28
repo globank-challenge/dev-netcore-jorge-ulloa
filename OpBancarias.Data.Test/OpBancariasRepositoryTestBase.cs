@@ -17,8 +17,7 @@ namespace OpBancarias.Data.Test
                 .AddInMemoryCollection(inMemorySettings)
                 .Build();
 
-           // _context = new OpBancariasContext(_configuration);
-            _context = new OpBancariasContext();
+            _context = new OpBancariasContext(_configuration);
         }
     }
 }

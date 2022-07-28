@@ -9,7 +9,9 @@ namespace OpBancarias.Data.Exceptions
         {
             ApplicationError,
             ModelStateError,
+            [Description("Bad Request")]
             BadRequest = 400,
+            [Description("Unauthorized Request")]
             UnauthorizedRequest = 401,
             [Description("Not Found")]
             NotFound = 404,
@@ -40,17 +42,6 @@ namespace OpBancarias.Data.Exceptions
             HttpStatusCode httpStatusCode = HttpStatusCode.BadRequest,
             ErrorCodes errorCode = ErrorCodes.ApplicationError)
             : base(message)
-        {
-            StatusCode = httpStatusCode;
-            ErrorCode = errorCode;
-        }
-
-        public CustomException(
-            Exception ex,
-            string message,
-            HttpStatusCode httpStatusCode = HttpStatusCode.BadRequest,
-            ErrorCodes errorCode = ErrorCodes.ApplicationError)
-            : base(message, ex)
         {
             StatusCode = httpStatusCode;
             ErrorCode = errorCode;

@@ -15,8 +15,6 @@ namespace OpBancarias.Usuarios.Api.Models
 {
     public class UsuariosModelFactory: OpBancariasModelFactoryBase<IUsuarioRepository>
     {
-        private readonly IUsuarioRepository _usuarioRepository;
-
         public UsuariosModelFactory(
             IUsuarioRepository repo,
             Application app,
@@ -30,14 +28,14 @@ namespace OpBancarias.Usuarios.Api.Models
                       logger,
                       actionContextAccessor)
         {
-            _usuarioRepository = repo;
+
         }
 
         public async Task<UsuarioModel> SaveUsuario(UsuarioQueryModel payload)
         {
 
             Usuario usuario = new Usuario(
-                _usuarioRepository,
+                OpBancariasRepo,
                 CurrentPrincipal,
                 Application,
                 Mapper,
@@ -54,7 +52,7 @@ namespace OpBancarias.Usuarios.Api.Models
         public async Task<UsuarioModel> GetUsuario(string userName)
         {
             Usuario usuario = new Usuario(
-                _usuarioRepository,
+                OpBancariasRepo,
                 CurrentPrincipal,
                 Application,
                 Mapper,
@@ -75,7 +73,7 @@ namespace OpBancarias.Usuarios.Api.Models
                                     CustomException.ErrorCodes.BadRequest);
 
             Usuario usuario = new Usuario(
-                _usuarioRepository,
+                OpBancariasRepo,
                 CurrentPrincipal,
                 Application,
                 Mapper,

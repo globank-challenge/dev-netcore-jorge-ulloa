@@ -13,8 +13,14 @@ namespace OpBancarias.Data.Repositories.Usuario
             _context = context;
         }
 
-        public async Task<Models.Usuario> SaveUsuario(Models.Usuario usuarioModel)
+        public async Task<Models.Usuario> SaveUsuario(Models.Usuario? usuarioModel)
         {
+            if (usuarioModel == null)
+                throw new CustomException(
+                                "Error de datos: Datos a actualizar no válidos.",
+                                HttpStatusCode.BadRequest,
+                                CustomException.ErrorCodes.BadRequest);
+
             try {
                 var savedUsuario = await _context.Usuarios.AddAsync(usuarioModel);
                 await _context.SaveChangesAsync();
@@ -29,8 +35,14 @@ namespace OpBancarias.Data.Repositories.Usuario
             }
         }
 
-        public async Task<Models.Usuario?> GetUsuario(string userName)
+        public async Task<Models.Usuario?> GetUsuario(string? userName)
         {
+            if (userName == null)
+                throw new CustomException(
+                                "Error de datos: Datos de búqueda no válidos.",
+                                HttpStatusCode.BadRequest,
+                                CustomException.ErrorCodes.BadRequest);
+
             try
             {
                 var usuario =  await _context.Usuarios.AsNoTracking().FirstOrDefaultAsync(user => user.UserName == userName);

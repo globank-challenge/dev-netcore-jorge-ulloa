@@ -13,7 +13,7 @@ namespace OpBancarias.Clientes.Biz
     {
         #region Private Members
 
-        private IClienteRepository _repo;
+        private readonly IClienteRepository _repo;
         private int _id;
 
         #endregion
@@ -56,9 +56,9 @@ namespace OpBancarias.Clientes.Biz
         #region Constructors
 
         public Cliente(
-            string clienteId,
+            string? clienteId,
             IClienteRepository repo,
-            IPrincipal principal,
+            IPrincipal? principal,
             Application application,
             IMapper mapper,
             ILogger logger
@@ -77,7 +77,7 @@ namespace OpBancarias.Clientes.Biz
 
         public Cliente(
             IClienteRepository repo,
-            IPrincipal principal,
+            IPrincipal? principal,
             Application application,
             IMapper mapper,
             ILogger logger
@@ -103,7 +103,7 @@ namespace OpBancarias.Clientes.Biz
         /// <param name="clienteId">customers´s identifier</param>
         /// <returns></returns>
         /// <exception cref="CustomException"></exception>
-        public async Task Load(string clienteId)
+        public async Task Load(string? clienteId)
         {
             Data.Models.Cliente? model = await _repo.GetClienteByIdentificador(clienteId);
 
@@ -120,7 +120,7 @@ namespace OpBancarias.Clientes.Biz
         /// Loads account info into entity model from DB model
         /// </summary>
         /// <param name="model"></param>
-        public void Load(Data.Models.Cliente model)
+        public void Load(Data.Models.Cliente? model)
         {
             if (model == null)
             {
@@ -218,7 +218,7 @@ namespace OpBancarias.Clientes.Biz
         /// <exception cref="CustomException"></exception>
         public async Task<bool> Remove()
         {
-            if (Cuentas.Count() > 0)
+            if (Cuentas?.Count > 0)
                 throw new CustomException(
                                     "No es posible eliminar un cliente con cuentas.",
                                     HttpStatusCode.BadRequest,

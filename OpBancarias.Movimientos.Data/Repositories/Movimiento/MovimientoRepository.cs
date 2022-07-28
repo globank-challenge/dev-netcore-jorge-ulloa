@@ -13,8 +13,14 @@ namespace OpBancarias.Data.Repositories.Movimiento
             _context = context;
         }
 
-        public async Task<Models.Movimiento> SaveMovimiento(Models.Movimiento movimientoModel)
+        public async Task<Models.Movimiento> SaveMovimiento(Models.Movimiento? movimientoModel)
         {
+            if (movimientoModel == null)
+                throw new CustomException(
+                                "Error de datos: Datos a actualizar no válidos.",
+                                HttpStatusCode.BadRequest,
+                                CustomException.ErrorCodes.BadRequest);
+
             try
             {
                 var savedMovimiento = await _context.Movimientos.AddAsync(movimientoModel);
@@ -33,6 +39,11 @@ namespace OpBancarias.Data.Repositories.Movimiento
 
         public async Task<Models.Cuenta?> GetSaldoFromMovimientosCuenta(string? NumeroCuenta)
         {
+            if (NumeroCuenta == null)
+                throw new CustomException(
+                                "Error de datos: Datos de búsqueda no válidos.",
+                                HttpStatusCode.BadRequest,
+                                CustomException.ErrorCodes.BadRequest);
             try
             {
                 var cuenta = await _context.Cuentas.AsNoTracking().FirstOrDefaultAsync(cta => cta.Numero == NumeroCuenta);

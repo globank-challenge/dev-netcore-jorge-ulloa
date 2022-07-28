@@ -9,9 +9,6 @@ namespace OpBancarias.Clientes.Api.Models
 {
     public class ClientesModelFactory: OpBancariasModelFactoryBase<IClienteRepository>
     {
-        private IClienteRepository _clienteRepository;
-        private ILogger<ClientesModelFactory> _logger;
-
         public ClientesModelFactory(
             IClienteRepository repo,
             Application app,
@@ -25,18 +22,18 @@ namespace OpBancarias.Clientes.Api.Models
                       logger,
                       actionContextAccessor)
         {
-            _clienteRepository = repo;
+
         }
 
         public async Task<ClienteModel> SaveCliente(ClienteQueryModel payload)
         {
          
             Cliente cliente = new Cliente(
-                _clienteRepository,
+                OpBancariasRepo,
                 CurrentPrincipal,
                 Application,
                 Mapper,
-                _logger
+                OpBancariasLogger
                 );
 
             Mapper.Map(payload, cliente);
@@ -51,11 +48,11 @@ namespace OpBancarias.Clientes.Api.Models
 
             Cliente cliente = new Cliente(
                 clienteId,
-                _clienteRepository,
+                OpBancariasRepo,
                 CurrentPrincipal,
                 Application,
                 Mapper,
-                _logger
+                OpBancariasLogger
                 );
 
 
@@ -67,11 +64,11 @@ namespace OpBancarias.Clientes.Api.Models
         public async Task<ClienteModel> GetCliente(string idCliente)
         {
             Cliente cliente = new Cliente(
-                _clienteRepository,
+                OpBancariasRepo,
                 CurrentPrincipal,
                 Application,
                 Mapper,
-                _logger
+                OpBancariasLogger
                 );
 
             await cliente.Load(idCliente);
@@ -83,11 +80,11 @@ namespace OpBancarias.Clientes.Api.Models
         {
             Cliente cliente = new Cliente(
                 idCliente,
-                _clienteRepository,
+                OpBancariasRepo,
                 CurrentPrincipal,
                 Application,
                 Mapper,
-                _logger
+                OpBancariasLogger
                 );
 
             return await cliente.Remove();
@@ -97,11 +94,11 @@ namespace OpBancarias.Clientes.Api.Models
         {
             Cliente cliente = new Cliente(
                 payload.Identificacion,
-                _clienteRepository,
+                OpBancariasRepo,
                 CurrentPrincipal,
                 Application,
                 Mapper,
-                _logger
+                OpBancariasLogger
                 );
 
             Mapper.Map(payload, cliente);

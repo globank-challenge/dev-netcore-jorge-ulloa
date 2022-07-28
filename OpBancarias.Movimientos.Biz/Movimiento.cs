@@ -13,10 +13,7 @@ namespace OpBancarias.Movimientos.Biz
     {
         #region Private Members
 
-        private IMovimientoRepository _repo;
-        private ILogger _logger;
-
-        private int _id;
+        private readonly IMovimientoRepository _repo;
 
         #endregion
 
@@ -50,7 +47,7 @@ namespace OpBancarias.Movimientos.Biz
 
         public Movimiento(
             IMovimientoRepository repo,
-            IPrincipal principal,
+            IPrincipal? principal,
             Application application,
             IMapper mapper,
             ILogger logger
@@ -64,7 +61,6 @@ namespace OpBancarias.Movimientos.Biz
                   )
         {
             _repo = repo;
-            _logger = logger;
         }
 
         #endregion Constructors
@@ -83,8 +79,6 @@ namespace OpBancarias.Movimientos.Biz
             }
 
             Mapper.Map(model, this);
-
-            _id = model.Id;
         }
 
         #endregion Load

@@ -14,8 +14,7 @@ namespace OpBancarias.Core.Biz
             Builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory());
 
-            Builder.AddJsonFile("..\\shared-appsettings.json", optional: true, reloadOnChange: false)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: false)
+            Builder.AddJsonFile("appsettings.json", optional: true, reloadOnChange: false)
                 .AddEnvironmentVariables();
             Configuration = Builder.Build();
         }

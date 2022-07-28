@@ -25,7 +25,7 @@ namespace OpBancarias.Biz.Core.Tests
         {
             List<Type> listOfTypes = new List<Type>();
             List<Assembly> listOfAssemblies = new List<Assembly>();
-            string directoryName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string directoryName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? ".";
             string[] files = Directory.GetFiles(directoryName, "OpBancarias.*.dll");
             string[] array = files;
             foreach (string path in array)

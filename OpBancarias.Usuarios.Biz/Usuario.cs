@@ -13,7 +13,7 @@ namespace OpBancarias.Usuarios.Biz
     {
         #region Private Members
 
-        private IUsuarioRepository _repo;
+        private readonly IUsuarioRepository _repo;
 
         #endregion
 
@@ -31,7 +31,7 @@ namespace OpBancarias.Usuarios.Biz
 
         public Usuario(
             IUsuarioRepository repo,
-            IPrincipal principal,
+            IPrincipal? principal,
             Application application,
             IMapper mapper,
             ILogger logger
@@ -57,7 +57,7 @@ namespace OpBancarias.Usuarios.Biz
         /// <param name="userName">user´s identifier</param>
         /// <returns></returns>
         /// <exception cref="CustomException"></exception>
-        public async Task Load(string userName)
+        public async Task Load(string? userName)
         {
             Data.Models.Usuario? model = await _repo.GetUsuario(userName);
 
@@ -74,7 +74,7 @@ namespace OpBancarias.Usuarios.Biz
         /// Loads user info
         /// </summary>
         /// <param name="model"></param>
-        public void Load(Data.Models.Usuario model)
+        public void Load(Data.Models.Usuario? model)
         {
             if (model == null)
             {
