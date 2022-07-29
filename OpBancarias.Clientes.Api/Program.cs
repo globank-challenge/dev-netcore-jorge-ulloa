@@ -8,7 +8,7 @@ startup.ConfigureServices(builder.Services);
 
 var app = builder.Build();
 
-startup.Configure(app, builder.Environment);
+startup.Configure(app);
 
 app.Run(app.Configuration.GetSection("ApiConfig").GetValue<string>("ClientesApiUrl"));
 

@@ -12,6 +12,16 @@
 				{
 					"name": "GetClienteById",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BearerToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -35,6 +45,16 @@
 				{
 					"name": "GetMovimientosCuentaCliente",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BearerToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -64,11 +84,21 @@
 				{
 					"name": "AddCliente",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BearerToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"id\": 0,\r\n  \"identificacion\": \"1756880301\",\r\n  \"nombre\": \"Jose\",\r\n  \"apellido\": \"Lema\",\r\n  \"edad\": 40,\r\n  \"direccion\": \"Otavalo sn y principal\",\r\n  \"telefono\": \"098254785\",\r\n  \"userName\": \"jose.lema\",\r\n  \"password\": \"1234\",\r\n  \"estadoActivo\": true\r\n}",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"identificacion\": \"1756880304\",\r\n  \"nombre\": \"Juan\",\r\n  \"apellido\": \"Osorio\",\r\n  \"edad\": 40,\r\n  \"direccion\": \"13 junio y Equinoccial\",\r\n  \"telefono\": \"098874587\",\r\n  \"userName\": \"juanosorio\",\r\n  \"password\": \"1245P@ssword\",\r\n  \"estadoActivo\": true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -90,15 +120,25 @@
 				{
 					"name": "RemoveCliente",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BearerToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{ClientesApi}}/1756880303/remove",
+							"raw": "{{ClientesApi}}/1756880304/remove",
 							"host": [
 								"{{ClientesApi}}"
 							],
 							"path": [
-								"1756880303",
+								"1756880304",
 								"remove"
 							]
 						}
@@ -108,11 +148,21 @@
 				{
 					"name": "UpdateCliente",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BearerToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"id\": 0,\r\n  \"identificacion\": \"1756880303\",\r\n  \"nombre\": \"Juan\",\r\n  \"apellido\": \"Osorio\",\r\n  \"edad\": 80,\r\n  \"direccion\": \"13 junio y Equinoccial\",\r\n  \"telefono\": \"098874587\",\r\n  \"userName\": \"juan.osorio\",\r\n  \"password\": \"1245\",\r\n  \"estadoActivo\": true\r\n}",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"identificacion\": \"1756880303\",\r\n  \"nombre\": \"Juan\",\r\n  \"apellido\": \"Osorio\",\r\n  \"edad\": 90,\r\n  \"direccion\": \"13 junio y Equinoccial\",\r\n  \"telefono\": \"098874587\",\r\n  \"userName\": \"juan.osorio\",\r\n  \"password\": \"1245PQssw0rd-\",\r\n  \"estadoActivo\": true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -139,11 +189,21 @@
 				{
 					"name": "AddCuenta",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BearerToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"id\": 0,\r\n  \"numero\": \"585545\",\r\n  \"tipo\": 2,\r\n  \"saldoInicial\": 1000,\r\n  \"estadoActivo\": true,\r\n  \"clienteId\": 13\r\n}",
+							"raw": "{\r\n  \"numero\": \"585545\",\r\n  \"tipo\": 2,\r\n  \"saldoInicial\": 1000,\r\n  \"estadoActivo\": true,\r\n  \"clienteId\": 13\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -164,9 +224,26 @@
 				},
 				{
 					"name": "GetCuentaById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BearerToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{CuentasApi}}/478758",
 							"host": [
@@ -182,6 +259,16 @@
 				{
 					"name": "UpdateCuenta",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BearerToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -208,15 +295,25 @@
 				{
 					"name": "RemoveCuenta",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BearerToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{CuentasApi}}/496825/remove",
+							"raw": "{{CuentasApi}}/585545/remove",
 							"host": [
 								"{{CuentasApi}}"
 							],
 							"path": [
-								"496825",
+								"585545",
 								"remove"
 							]
 						}
@@ -231,11 +328,21 @@
 				{
 					"name": "MovimientosCredito",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BearerToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"valor\": 600,\r\n  \"numeroCuenta\": \"225487\"\r\n}",
+							"raw": "{\r\n  \"valor\": 1.00,\r\n  \"numeroCuenta\": \"585545\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -257,11 +364,21 @@
 				{
 					"name": "MovimientosDebito",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BearerToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"valor\": -540,\r\n  \"numeroCuenta\": \"496825\"\r\n}",
+							"raw": "{\r\n  \"valor\": -1.00,\r\n  \"numeroCuenta\": \"495878\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -275,6 +392,80 @@
 							],
 							"path": [
 								"debito"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuarios.Api",
+			"item": [
+				{
+					"name": "GetUsuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{UsuariosApi}}/jorge.ulloa",
+							"host": [
+								"{{UsuariosApi}}"
+							],
+							"path": [
+								"jorge.ulloa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddUsuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"jorge.ulloa\",\r\n  \"password\": \"MySecur3P@ss12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{UsuariosApi}}/add",
+							"host": [
+								"{{UsuariosApi}}"
+							],
+							"path": [
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetToken",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"jorge.ulloa\",\r\n  \"password\": \"MySecur3P@ss12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{UsuariosApi}}/token",
+							"host": [
+								"{{UsuariosApi}}"
+							],
+							"path": [
+								"token"
 							]
 						}
 					},

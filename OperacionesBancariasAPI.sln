@@ -6,9 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpBancarias.Api.Core", "BankingOperationsAPI\OpBancarias.Api.Core.csproj", "{80C890D3-A2A0-489A-9D0A-0700B28C0309}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{AD4A916A-037E-4F0E-AFF6-712E9A6D0E91}"
-	ProjectSection(SolutionItems) = preProject
-		OpBancarias.Cuentas.Api\appsettings.Development.json = OpBancarias.Cuentas.Api\appsettings.Development.json
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Biz", "Biz", "{0E26EAA9-D948-4528-8D6A-FA39CDC19471}"
 EndProject
@@ -72,11 +69,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ChallengeContent", "Challen
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OpBancarias.Usuarios.Api", "OpBancarias.Usuarios.Api", "{25BBCA35-07C7-4030-8F52-BE160692E1AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpBancarias.Usuarios.Api", "OpBancarias.Usuarios.Api\OpBancarias.Usuarios.Api.csproj", "{F3E72FDF-8D23-4C7C-99AC-9F7F1887C63C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpBancarias.Usuarios.Api", "OpBancarias.Usuarios.Api\OpBancarias.Usuarios.Api.csproj", "{F3E72FDF-8D23-4C7C-99AC-9F7F1887C63C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OpBancarias.Usuarios.Biz", "OpBancarias.Usuarios.Biz", "{A04FC707-5D85-447C-8C40-C89A059C5935}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpBancarias.Usuarios.Biz", "OpBancarias.Usuarios.Biz\OpBancarias.Usuarios.Biz.csproj", "{9ACD1D06-0575-4F5C-95DA-49E3CD724DE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpBancarias.Usuarios.Biz", "OpBancarias.Usuarios.Biz\OpBancarias.Usuarios.Biz.csproj", "{9ACD1D06-0575-4F5C-95DA-49E3CD724DE0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

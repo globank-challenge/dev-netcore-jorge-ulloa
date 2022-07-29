@@ -7,24 +7,24 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
-EXPOSE 7266
+EXPOSE 7010
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["OpBancarias.Movimientos.Api/OpBancarias.Movimientos.Api.csproj", "OpBancarias.Movimientos.Api/"]
+COPY ["OpBancarias.Usuarios.Api/OpBancarias.Usuarios.Api.csproj", "OpBancarias.Usuarios.Api/"]
 COPY ["BankingOperationsAPI/OpBancarias.Api.Core.csproj", "BankingOperationsAPI/"]
 COPY ["OpBancarias.Movimientos.Data/OpBancarias.Data.csproj", "OpBancarias.Movimientos.Data/"]
 COPY ["OpBancarias.Core.Biz/OpBancarias.Core.Biz.csproj", "OpBancarias.Core.Biz/"]
-COPY ["OpBancarias.Movimientos.Biz/OpBancarias.Movimientos.Biz.csproj", "OpBancarias.Movimientos.Biz/"]
-RUN dotnet restore "OpBancarias.Movimientos.Api/OpBancarias.Movimientos.Api.csproj"
+COPY ["OpBancarias.Usuarios.Biz/OpBancarias.Usuarios.Biz.csproj", "OpBancarias.Usuarios.Biz/"]
+RUN dotnet restore "OpBancarias.Usuarios.Api/OpBancarias.Usuarios.Api.csproj"
 COPY . .
-WORKDIR "/src/OpBancarias.Movimientos.Api"
-RUN dotnet build "OpBancarias.Movimientos.Api.csproj" -c Release -o /app/build
+WORKDIR "/src/OpBancarias.Usuarios.Api"
+RUN dotnet build "OpBancarias.Usuarios.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "OpBancarias.Movimientos.Api.csproj" -c Release -o /app/publish
+RUN dotnet publish "OpBancarias.Usuarios.Api.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "OpBancarias.Movimientos.Api.dll"]
+ENTRYPOINT ["dotnet", "OpBancarias.Usuarios.Api.dll"]
